@@ -7,7 +7,7 @@ import React, {
 import { Link } from "react-router-dom";
 
 
-export default function Login() { 
+export default function LoginRoute() { 
 	const initialState = {
 		user: '',
 		pass: ''
@@ -30,16 +30,16 @@ export default function Login() {
 	const login = async () => {
 		let { user, pass } = credentials;
 		try {
-			await fetch('http://localhost:3007/users/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					username: user,
-					password: pass
-				})
-			});
+			// await fetch('http://localhost:3007/users/login', {
+			// 	method: 'POST',
+			// 	headers: {
+			// 		'Content-Type': 'application/json'
+			// 	},
+			// 	body: JSON.stringify({
+			// 		username: user,
+			// 		password: pass
+			// 	})
+			// });
 			alert('YAY! You logged in!');
 		} catch (e) {
 			alert('Welp u failed');

@@ -5,8 +5,13 @@ import { BrowserRouter as Router,
 	//Link 
 } from "react-router-dom";
 
-import Login from './Routes/Login';
-import SignUp from './Routes/SignUp';
+import LoginRoute from './Routes/LoginRoute';
+import SignUpRoute from './Routes/SignUpRoute';
+import HeroesIndexRoute from './Routes/HeroesIndexRoute';
+import HeroesDetailRoute from './Routes/HeroesDetailRoute';
+import GalleryRoute from './Routes/GalleryRoute';
+import CreateHeroRoute from './Routes/CreateHeroRoute';
+import CreateSuitRoute from './Routes/CreateSuitRoute';
 
 // function login() {
 //   return <h2>Login</h2>;
@@ -24,10 +29,25 @@ export default function Routes () {
 						renders the first one that matches the current URL. */}
 				<Switch>
 					<Route path="/signup">
-						<SignUp />
+						<SignUpRoute />
+					</Route>
+					<Route path="/login">
+						<LoginRoute />
 					</Route>
 					<Route path="/">
-						<Login />
+						<HeroesIndexRoute />
+					</Route>
+					<Route path="/detail">
+						<HeroesDetailRoute />
+					</Route>
+					<Route path="/gallery">
+						<GalleryRoute />
+					</Route>
+					<Route path="/create-hero">
+						<CreateHeroRoute />
+					</Route>
+					<Route path="/create-suit">
+						<CreateSuitRoute />
 					</Route>
 				</Switch>
 			</div>

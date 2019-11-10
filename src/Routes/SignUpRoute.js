@@ -7,7 +7,7 @@ import React, {
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 
-export default function SignUp() { 
+export default function SignUpRoute() { 
 	const initialState = {
 		newUser: '',
 		newPass: '',
