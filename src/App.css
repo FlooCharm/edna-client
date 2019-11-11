@@ -1,3 +1,55 @@
+/* General */
 .container {
 	padding: 2em;
+	padding-left: calc(240px + 2em);
+}
+
+/* flexbox */
+
+.flex1 { flex: 1; }
+
+.centered {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.full-width { width: 100%; }
+
+/* margins */
+
+.margin-bottom { margin-bottom: 1em; }
+
+.big-margin-bottom { margin-bottom: 2em; }
+
+.margin-auto { margin: auto; }
+
+/* paddings */
+
+.padded { padding: 2em; }
+
+/* colors */
+
+/* fonts */
+
+/* sideNav*/
+.sidenav---sidenav---_2tBP {
+	background-color: #000 !important;
+	padding-top: 50px;
+}
+.sidenav---highlighted---oUx9u {
+	background-color: #EF2626 !important;
+}
+.sidenav---navicon---3gCRo {
+	display: flex !important;
+	align-items: center;
+	justify-content: center;
+}
+.sidenav---navtext---1AE_f { color: #fff !important; }
+.sidenav---sidenav-navitem---uwIJ- { position: static !important; }
+.sidenav-last-item {    
+	position: absolute !important;
+    bottom: 0;
+    width: 100%;
+    background-color: #EF2626;
 }

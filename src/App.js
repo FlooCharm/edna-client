@@ -6,7 +6,7 @@ import React, {
 import Router from './Router';
 
 import './App.css';
-
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
 function App() {
   return (

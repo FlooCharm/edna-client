@@ -4,14 +4,15 @@ import React, {
 	useReducer 
 } from 'react';
 
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 
 export default function LoginRoute() { 
 	const initialState = {
 		user: '',
 		pass: ''
 	};
+
+	const history = useHistory();
 
 	const [credentials, dispatchCredentials] = useReducer(reducer, initialState);
 
@@ -40,6 +41,7 @@ export default function LoginRoute() {
 			// 		password: pass
 			// 	})
 			// });
+			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
 			alert('Welp u failed');
@@ -51,7 +53,7 @@ export default function LoginRoute() {
 	}
 
 	return (
-		<div className="container">
+		<div className="padded">
 			<h1>Login!</h1>
 			<input
 				type="text"

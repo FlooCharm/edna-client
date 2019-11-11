@@ -13,6 +13,9 @@ import GalleryRoute from './Routes/GalleryRoute';
 import CreateHeroRoute from './Routes/CreateHeroRoute';
 import CreateSuitRoute from './Routes/CreateSuitRoute';
 
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import { List, Grid, LogOut } from 'react-feather';
+
 // function login() {
 //   return <h2>Login</h2>;
 // }
@@ -24,7 +27,6 @@ import CreateSuitRoute from './Routes/CreateSuitRoute';
 export default function Routes () {
 	return (
 		<Router>
-			<div>
 				{/* A <Switch> looks through its children <Route>s and
 						renders the first one that matches the current URL. */}
 				<Switch>
@@ -34,15 +36,15 @@ export default function Routes () {
 					<Route path="/login">
 						<LoginRoute />
 					</Route>
-					<Route path="/">
+					{/*<Route path="/">
 						<HeroesIndexRoute />
-					</Route>
+					</Route>*/}
 					<Route path="/detail">
 						<HeroesDetailRoute />
 					</Route>
-					<Route path="/gallery">
+					{/*<Route path="/gallery">
 						<GalleryRoute />
-					</Route>
+					</Route>*/}
 					<Route path="/create-hero">
 						<CreateHeroRoute />
 					</Route>
@@ -50,7 +52,70 @@ export default function Routes () {
 						<CreateSuitRoute />
 					</Route>
 				</Switch>
-			</div>
+				<Route render={({ location, history }) => (
+					location.pathname !== '/login' &&
+			        (<React.Fragment>
+			            <SideNav
+			                onSelect={(selected) => {
+			                	console.log(location)
+			                	if (selected === 'logout') {
+									history.push('login');
+			                	} else {
+				                    const to = '/' + selected || '';
+				                    if (location.pathname !== to) {
+				                        history.push(to);
+				                    }
+			                	}
+			                }}
+			            	defaultExpanded
+			            >
+			                {/* <SideNav.Toggle /> */}
+							<div className='centered big-margin-bottom'>
+								<img 
+									width='104'
+									src="assets/edna.svg" 
+								/>	
+							</div>
+			                <SideNav.Nav defaultSelected="heroes">
+			                    <NavItem  eventKey="heroes">
+			                        <NavIcon>
+			                           <List color='#ffffff'/>
+			                        </NavIcon>
+			                        <NavText>
+			                            Superhéroes
+			                        </NavText>
+			                    </NavItem>
+			                    <NavItem eventKey="gallery">
+			                        <NavIcon>
+			                           <Grid color='#ffffff'/>
+			                        </NavIcon>
+			                        <NavText>
+			                            Galería
+			                        </NavText>
+			                    </NavItem>
+			                	<NavItem 
+			                		navitemClassName='sidenav-last-item'
+			                		eventKey="logout">
+			                        <NavIcon>
+			                           <LogOut color='#ffffff'/>
+			                        </NavIcon>
+			                        <NavText>
+			                            Cerrar Sesión
+			                        </NavText>
+			                    </NavItem>
+			                </SideNav.Nav>
+			            </SideNav>
+			            <main>
+			               	<Route path="/heroes">
+								<HeroesIndexRoute />
+							</Route>
+							<Route path="/gallery">
+								<GalleryRoute />
+							</Route>
+			            </main>
+			        </React.Fragment>)
+			  	  )}
+			    />
 		</Router>
 	);
 }
