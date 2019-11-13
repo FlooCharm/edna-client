@@ -56,3 +56,15 @@ body { font-family: 'Abel', sans-serif; }
     width: 100%;
     background-color: #EF2626;
 }
+
+/* Input */
+.input-field { 
+	padding: 12px 24px;
+	font-size: 1.5em;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.1);
+}
+.input-field.rounded { border-radius: 50px; }
+.input-field:placeholder { color: #7C7C7C; }
