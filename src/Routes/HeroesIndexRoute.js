@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import TextInput from '../Components/TextInput';
+import SimpleCard from '../Components/SimpleCard';
 
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
@@ -17,6 +18,9 @@ export default function HeroesIndexRoute() {
 				value={filterText}
 				onChange={(e) => setFilterText(e.target.value)}
 			/>	
+			<SimpleCard>
+				AHHHHHHHHHH
+			</SimpleCard>
 		</div>
 	)	
 }
