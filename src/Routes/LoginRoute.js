@@ -34,16 +34,16 @@ export default function LoginRoute() {
 	const login = async () => {
 		let { user, pass } = credentials;
 		try {
-			// await fetch('http://localhost:3007/users/login', {
-			// 	method: 'POST',
-			// 	headers: {
-			// 		'Content-Type': 'application/json'
-			// 	},
-			// 	body: JSON.stringify({
-			// 		username: user,
-			// 		password: pass
-			// 	})
-			// });
+			await fetch('https://edna-api.herokuapp.com/users/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					username: user,
+					password: pass
+				})
+			});
 			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
