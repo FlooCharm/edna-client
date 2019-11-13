@@ -57,7 +57,6 @@ export default function Routes () {
 			        (<React.Fragment>
 			            <SideNav
 			                onSelect={(selected) => {
-			                	console.log(location)
 			                	if (selected === 'logout') {
 									history.push('login');
 			                	} else {

@@ -4,7 +4,10 @@ import React, {
 	useReducer 
 } from 'react';
 
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import TextInput from '../Components/TextInput';
+import PillBtn from '../Components/PillBtn';
+import BubbleText from '../Components/BubbleText';
 
 export default function LoginRoute() { 
 	const initialState = {
@@ -53,32 +56,56 @@ export default function LoginRoute() {
 	}
 
 	return (
-		<div className="padded">
-			<h1>Login!</h1>
-			<input
-				type="text"
-				placeholder='Username'
-				onChange={({ target }) => onChangeText(target, 'user')}
-				value={credentials.user}
-			/>
-			<br/>
-			<br/>
-			<input 
-				type="pass"
-				placeholder='Password'
-				onChange={({ target }) => onChangeText(target, 'pass')}
-				value={credentials.pass}
-			/>
-			<br/>
-			<br/>
-			<button onClick={login}>
-				Iniciar Sesión
-			</button>
-			<Link
-				to='/signup'
-			>
-				Regístrate
-			</Link>
+		<div className="full-container black-bg centered">
+			<div className='flex flex05 justify-content-center big-padding-left'>
+				<img 
+					width='80%'
+					src="assets/edna.svg" 
+				/>
+			</div>
+			<div className='flex flex1 column'>
+				<h1>Login!</h1>
+				<div className='bubble-text'>
+					<BubbleText 
+						text='Introduce el usuario'
+					/>
+				</div>
+				<div className='flex justify-content-center'>
+					<TextInput
+						className='margin-bottom reversed-margin-top black-bg width60'
+						placeholder='Usuario'
+						onChange={({ target }) => onChangeText(target, 'user')}
+						value={credentials.user}
+					/>
+				</div>
+				<div className='bubble-text'>
+					<BubbleText 
+						text='Introduce la contraseña'
+						isPass
+					/>
+				</div>
+				<div className='flex justify-content-center'>
+					<TextInput
+						className='big-margin-bottom reversed-margin-top black-bg width60'
+						type='password'
+						placeholder='Contraseña'
+						onChange={({ target }) => onChangeText(target, 'pass')}
+						value={credentials.pass}
+					/>
+				</div>
+				<div className='flex justify-content-flex-end'>
+					<PillBtn 
+						className='big-text'
+						text='INGRESAR'
+						onClick={login}
+					/>
+				</div>
+				{/*<Link
+					to='/signup'
+				>
+					Regístrate
+				</Link>*/}
+			</div>
 		</div>
 	)	
 }

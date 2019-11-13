@@ -8,6 +8,7 @@ export default function TextInput(props) {
 
 	return (
 		<input
+			type={props.type}
 			className={`input-field ${props.rounded && 'rounded'} ${props.className}`}
 			value={props.value}
 			placeholder={props.placeholder}
@@ -18,6 +19,7 @@ export default function TextInput(props) {
 
 TextInput.propTypes = {
 	className: PropTypes.string,
+	type: PropTypes.string,
 	value: PropTypes.string,
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
@@ -26,6 +28,7 @@ TextInput.propTypes = {
 
 TextInput.defaultProps = {
 	className: '',
+	type: 'text',
 	value: 'value',
 	placeholder: 'placeholder',
 	onChange: () => {},

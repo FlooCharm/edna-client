@@ -8,7 +8,7 @@ export default function PillBtn(props) {
 
 	return (
 		<button 
-			className={`pill-btn ${props.className} ${props.left && 'left'}`}
+			className={`pill-btn body-text ${props.className} ${props.left && 'left'}`}
 			disabled={props.disabled}
 			onClick={props.onClick}
 		>
