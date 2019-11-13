@@ -1,4 +1,7 @@
 /* General */
+html { font-family: 'Abel', sans-serif; }
+body { font-family: 'Abel', sans-serif; }
+
 .container {
 	padding: 2em;
 	padding-left: calc(240px + 2em);
