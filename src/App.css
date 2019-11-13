@@ -76,3 +76,27 @@ body { font-family: 'Abel', sans-serif; }
 	border-radius: 10px;
 	width: fit-content;
 }
+
+/* Buttons */
+.pill-btn {
+	outline: none;
+	background: #EF2626;
+	border: none;
+	border-radius: 50px 0px 0px 50px;
+	color: white;
+	font-size: 1.3em;
+	font-family: inherit;
+	padding: 12px;
+	padding-left: 30px;
+	cursor: pointer;
+}
+.pill-btn.left {
+	border-radius: 0px 50px 50px 0px;
+	padding: 12px;
+	padding-right: 30px;
+}
+.pill-btn:hover { background: #EF2626DD }
+.pill-btn:disabled { 
+	background: #EF262688; 
+	cursor: default;
+}

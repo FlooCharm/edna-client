@@ -2,6 +2,7 @@ import React, {
 	// useState, 
 	// useEffect, 
 } from 'react';
+import PropTypes from 'prop-types';
 
 export default function TextInput(props) { 
 
@@ -13,4 +14,20 @@ export default function TextInput(props) {
 			onChange={props.onChange}
 		/>
 	)	
+}
+
+TextInput.propTypes = {
+	className: PropTypes.string,
+	value: PropTypes.string,
+	placeholder: PropTypes.string,
+	onChange: PropTypes.func,
+	rounded: PropTypes.bool
+}
+
+TextInput.defaultProps = {
+	className: '',
+	value: 'value',
+	placeholder: 'placeholder',
+	onChange: () => {},
+	rounded: false
 }

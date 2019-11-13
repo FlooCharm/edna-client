@@ -5,6 +5,7 @@ import React, {
 
 import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
+import PillBtn from '../Components/PillBtn';
 
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
@@ -19,8 +20,14 @@ export default function HeroesIndexRoute() {
 				onChange={(e) => setFilterText(e.target.value)}
 			/>	
 			<SimpleCard>
-				AHHHHHHHHHH
+				<div>
+					AHHHHHHHHHH
+				</div>
 			</SimpleCard>
+			<PillBtn
+				text='REGISTRAR'
+				onClick={() => alert('AHHH')}
+			/>
 		</div>
 	)	
 }
