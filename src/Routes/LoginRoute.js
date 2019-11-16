@@ -9,10 +9,12 @@ import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
 import BubbleText from '../Components/BubbleText';
 
+import ApiService from '../services/ApiService';
+
 export default function LoginRoute() { 
 	const initialState = {
-		user: '',
-		pass: ''
+		username: '',
+		password: ''
 	};
 
 	const history = useHistory();
@@ -32,18 +34,8 @@ export default function LoginRoute() {
 	}
 
 	const login = async () => {
-		let { user, pass } = credentials;
 		try {
-			await fetch('https://edna-api.herokuapp.com/users/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					username: user,
-					password: pass
-				})
-			});
+			await ApiService.login(credentials)
 			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
@@ -74,8 +66,8 @@ export default function LoginRoute() {
 					<TextInput
 						className='margin-bottom reversed-margin-top black-bg width60'
 						placeholder='Usuario'
-						onChange={({ target }) => onChangeText(target, 'user')}
-						value={credentials.user}
+						onChange={({ target }) => onChangeText(target, 'username')}
+						value={credentials.username}
 					/>
 				</div>
 				<div className='bubble-text'>
@@ -89,8 +81,8 @@ export default function LoginRoute() {
 						className='big-margin-bottom reversed-margin-top black-bg width60'
 						type='password'
 						placeholder='Contraseña'
-						onChange={({ target }) => onChangeText(target, 'pass')}
-						value={credentials.pass}
+						onChange={({ target }) => onChangeText(target, 'password')}
+						value={credentials.password}
 					/>
 				</div>
 				<div className='flex justify-content-flex-end'>
