@@ -36,15 +36,9 @@ export default function Routes () {
 					<Route path="/login">
 						<LoginRoute />
 					</Route>
-					{/*<Route path="/">
-						<HeroesIndexRoute />
-					</Route>*/}
 					<Route path="/detail">
 						<HeroesDetailRoute />
 					</Route>
-					{/*<Route path="/gallery">
-						<GalleryRoute />
-					</Route>*/}
 					<Route path="/create-hero">
 						<CreateHeroRoute />
 					</Route>
@@ -53,7 +47,9 @@ export default function Routes () {
 					</Route>
 				</Switch>
 				<Route render={({ location, history }) => (
-					location.pathname !== '/login' &&
+					(location.pathname !== '/login') &&
+					(location.pathname !== '/create-hero') &&
+					(location.pathname !== '/create-suit') &&
 			        (<React.Fragment>
 			            <SideNav
 			                onSelect={(selected) => {

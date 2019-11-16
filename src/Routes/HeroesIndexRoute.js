@@ -3,12 +3,14 @@ import React, {
 	// useEffect, 
 } from 'react';
 
+import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
 import PillBtn from '../Components/PillBtn';
 
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
+	const history = useHistory();
 
 	return (
 		<div className="container">
@@ -26,7 +28,7 @@ export default function HeroesIndexRoute() {
 			</SimpleCard>
 			<PillBtn
 				text='REGISTRAR'
-				onClick={() => alert('AHHH')}
+				onClick={() => history.push('/create-hero')}
 			/>
 		</div>
 	)	
