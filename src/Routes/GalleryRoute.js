@@ -9,7 +9,7 @@ export default function GalleryRoute() {
 
 	return (
 		<div className="container">
-			<h1>GalleryRoute</h1>
+			<h1 className='no-margin'>GalleryRoute</h1>
 			
 		</div>
 	)	

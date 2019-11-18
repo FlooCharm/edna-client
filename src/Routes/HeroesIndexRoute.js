@@ -13,23 +13,29 @@ export default function HeroesIndexRoute() {
 	const history = useHistory();
 
 	return (
-		<div className="container">
-			<h1>HeroesIndexRoute</h1>
-			<TextInput 
-				rounded
-				placeholder='Buscar...'
-				value={filterText}
-				onChange={(e) => setFilterText(e.target.value)}
-			/>	
-			<SimpleCard>
-				<div>
-					AHHHHHHHHHH
-				</div>
+		<div className="container flex column align-items-center justify-content-space-around">
+			<div className='flex column full-width align-items-center'>
+				<p className='huge-text'>SUPERHÉROES</p>
+				<TextInput 
+					className='width60'
+					rounded
+					placeholder='Buscar...'
+					value={filterText}
+					onChange={(e) => setFilterText(e.target.value)}
+				/>	
+			</div>
+			<SimpleCard
+				className='padded hero-card'
+			>
+				<p className='no-margin big-text text-center'>SOME HERO NAME</p>
 			</SimpleCard>
-			<PillBtn
-				text='REGISTRAR'
-				onClick={() => history.push('/create-hero')}
-			/>
+			<div className='flex column align-items-flex-end full-width'>
+				<PillBtn
+					className=''
+					text='REGISTRAR'
+					onClick={() => history.push('/create-hero')}
+				/>
+			</div>
 		</div>
 	)	
 }
