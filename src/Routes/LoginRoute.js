@@ -1,5 +1,5 @@
 import React, { 
-	//useState, 
+	useState,
 	//useEffect, 
 	useReducer 
 } from 'react';
@@ -19,10 +19,10 @@ export default function LoginRoute() {
 		username: '',
 		password: ''
 	};
-
+	
 	const history = useHistory();
-
 	const [credentials, dispatchCredentials] = useReducer(reducer, initialState);
+	const [isLoading, setLoading] = useState(false);
 
 	function reducer(state, action) {
 		switch (action.type) {
@@ -36,13 +36,17 @@ export default function LoginRoute() {
 		}
 	}
 
-	const sendCredentials = async () => {
+	const sendCredentials = async (e) => {
+		e.preventDefault();
 		try {
+			setLoading(true);
 			await dispatch(login(credentials))
+			setLoading(false);
 			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
 			alert('Welp u failed');
+			setLoading(false);
 		}
 	}
 
@@ -58,7 +62,7 @@ export default function LoginRoute() {
 					src="assets/edna.svg" 
 				/>
 			</div>
-			<div className='flex flex1 column'>
+			<form className='flex flex1 column'>
 				<h1>Login!</h1>
 				<div className='bubble-text'>
 					<BubbleText 
@@ -90,9 +94,11 @@ export default function LoginRoute() {
 				</div>
 				<div className='flex justify-content-flex-end'>
 					<PillBtn 
+						disabled={!credentials.username || !credentials.password || isLoading}
+						type='submit'
 						className='big-text'
-						text='INGRESAR'
 						onClick={sendCredentials}
+						text={isLoading ? 'INGRESANDO...' :'INGRESAR'}
 					/>
 				</div>
 				{/*<Link
@@ -100,7 +106,7 @@ export default function LoginRoute() {
 				>
 					Regístrate
 				</Link>*/}
-			</div>
+			</form>
 		</div>
 	)	
 }
