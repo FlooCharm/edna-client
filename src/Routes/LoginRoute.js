@@ -3,15 +3,18 @@ import React, {
 	//useEffect, 
 	useReducer 
 } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
 import BubbleText from '../Components/BubbleText';
 
-import ApiService from '../services/ApiService';
+import { login } from '../actions/AuthActions';
+
 
 export default function LoginRoute() { 
+	const dispatch = useDispatch();
 	const initialState = {
 		username: '',
 		password: ''
@@ -33,9 +36,9 @@ export default function LoginRoute() {
 		}
 	}
 
-	const login = async () => {
+	const sendCredentials = async () => {
 		try {
-			await ApiService.login(credentials)
+			await dispatch(login(credentials))
 			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
@@ -89,7 +92,7 @@ export default function LoginRoute() {
 					<PillBtn 
 						className='big-text'
 						text='INGRESAR'
-						onClick={login}
+						onClick={sendCredentials}
 					/>
 				</div>
 				{/*<Link
