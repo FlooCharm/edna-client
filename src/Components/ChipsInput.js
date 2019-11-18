@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 export default function ChipsInput (props) {
 	const theme = {
-		chipsContainer: `chips-container width60 ${props.chips.length && 'no-padding-vertical'}`,
+		chipsContainer: `chips-container width60 ${props.value.length && 'no-padding-vertical'}`,
 		container: 'flex1',
 		input: 'input-field black-bg transparent-bg full-width no-padding',
 		suggestionsList: 'suggestions-list',
@@ -22,11 +22,11 @@ export default function ChipsInput (props) {
 	return (
 		<div>
 			<Chips
-				value={props.chips}
+				value={props.value}
 				theme={theme}
 				chipTheme={chipTheme}
 				placeholder={props.placeholder}
-				onChange={props.onChipsChange}
+				onChange={props.onChange}
 				suggestions={['some', 'chips', 'stored', 'in', 'redux T_T']}
 				alwaysRenderSuggestions
 				uniqueChips
@@ -37,13 +37,13 @@ export default function ChipsInput (props) {
 }
 
 ChipsInput.propTypes = {
-	chips: PropTypes.array,
+	value: PropTypes.array,
 	placeholder: PropTypes.string,
-	onChipsChange: PropTypes.func,
+	onChange: PropTypes.func,
 }
 
 ChipsInput.defaultProps = {
-	chips: [],
+	value: [],
 	placeholder: 'placeholder',
-	onChipsChange () {}
+	onChange () {}
 }
