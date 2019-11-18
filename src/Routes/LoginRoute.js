@@ -33,7 +33,8 @@ export default function LoginRoute() {
 		}
 	}
 
-	const login = async () => {
+	const login = async (e) => {
+		e.preventDefault();
 		try {
 			await ApiService.login(credentials)
 			history.push('/heroes');
@@ -55,7 +56,7 @@ export default function LoginRoute() {
 					src="assets/edna.svg" 
 				/>
 			</div>
-			<div className='flex flex1 column'>
+			<form className='flex flex1 column'>
 				<h1>Login!</h1>
 				<div className='bubble-text'>
 					<BubbleText 
@@ -87,6 +88,7 @@ export default function LoginRoute() {
 				</div>
 				<div className='flex justify-content-flex-end'>
 					<PillBtn 
+						type='submit'
 						className='big-text'
 						text='INGRESAR'
 						onClick={login}
@@ -97,7 +99,7 @@ export default function LoginRoute() {
 				>
 					Regístrate
 				</Link>*/}
-			</div>
+			</form>
 		</div>
 	)	
 }

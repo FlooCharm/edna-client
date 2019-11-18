@@ -12,7 +12,7 @@ body { font-family: 'Abel', sans-serif; }
 	padding-left: calc(240px + 2em);
 }
 
-.width60 { width: 60% }
+.border-box { box-sizing: border-box; }
 
 /* flexbox */
 .flex { display: flex; }
@@ -24,6 +24,7 @@ body { font-family: 'Abel', sans-serif; }
 
 .justify-content-center { justify-content: center; }
 .justify-content-flex-end { justify-content: flex-end; }
+.justify-content-space-between { justify-content: space-between; }
 
 .centered {
 	display: flex;
@@ -31,33 +32,47 @@ body { font-family: 'Abel', sans-serif; }
 	justify-content: center;
 }
 
+.width60 { width: 60% }
 .full-width { width: 100%; }
 
 /* margins */
-
+.no-margin { margin: 0; }
 .reversed-margin-top { margin-top: -1em; }
+
+.margin-right { margin-right: 1em; }
+.small-margin-left { margin-left: 0.5em; }
 .margin-bottom { margin-bottom: 1em; }
 .big-margin-bottom { margin-bottom: 2em; }
 
 .margin-auto { margin: auto; }
 
 /* paddings */
+.no-padding { padding: 0 !important; }
+.no-padding-vertical { 
+	padding-top: 0 !important; 
+	padding-bottom: 0 !important;
+}
 
 .padding-right { padding-right: 1em; }
 .big-padding-left { padding-left: 2em; }
 .big-padding-bottom { padding-bottom: 2em; }
 
 .padding-horizontal { padding: 0 2em; }
+.big-padding-horizontal { padding: 0 4em; }
+.padding-vertical { padding: 2em 0; }
+.big-padding-vertical { padding: 4em 0; }
 .padded { padding: 2em; }
 
 /* colors */
 .white-text { color: white; }
 
 .black-bg { background: #000; }
+.transparent-bg { background: transparent !important; }
 
 /* Texts */
 .body-text { font-size: 24px; }
 .big-text { font-size: 30px; }
+.huge-text { font-size: 48px; }
 
 /*.bubble-text { margin-left: -50px; }*/
 
@@ -129,4 +144,52 @@ body { font-family: 'Abel', sans-serif; }
 .pill-btn:disabled { 
 	background: #EF262688; 
 	cursor: default;
+}
+
+/* Chips */
+.chips-container {
+    display: flex;
+    position: relative;
+    min-height: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 12px 24px;
+}
+.suggestions-list {
+    position: absolute;
+    border: 1px solid #ccc;
+    z-index: 10;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: #fff;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 24vh;
+    overflow: auto;
+    font-size: 20px;
+}
+.suggestion {
+	padding: 16px 16px;
+}
+.suggestion-highlighted {
+	background: #ddd;
+}
+.chip {
+    margin: 5px 18px 5px -12px;
+    padding: 8px 16px;
+    background: #EF2626;
+    font-size: 1.5em;
+    color: #fff;
+    border-radius: 5px;
+    cursor: default;
+}
+.chip-selected {
+	background: #EF262688;
+}
+.chip-remove {
+	cursor: pointer;
 }
