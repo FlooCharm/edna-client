@@ -32,7 +32,8 @@ body { font-family: 'Abel', sans-serif; }
 	justify-content: center;
 }
 
-.width60 { width: 60% }
+.width60 { width: 60%; }
+.width60-padded { width: calc(60% + 48px); }
 .full-width { width: 100%; }
 
 /* margins */
@@ -193,3 +194,14 @@ body { font-family: 'Abel', sans-serif; }
 .chip-remove {
 	cursor: pointer;
 }
+
+/* RadioTabs */
+.radio-tabs {
+	color: white;
+	background: rgba(255, 255, 255, 0.5);
+	border: none;
+	border-radius: 5px;
+	font-size: 1.2em;
+}
+
+.radio-tabs > label:before { color: #EF2626 !important; }

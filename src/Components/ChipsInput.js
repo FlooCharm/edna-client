@@ -1,7 +1,7 @@
 import React, { 
-	useState, 
+	// useState, 
 } from 'react';
-import Chips, { Chip, theme } from 'react-chips';
+import Chips from 'react-chips';
 import PropTypes from 'prop-types';
 
 export default function ChipsInput (props) {
