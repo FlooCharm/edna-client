@@ -40,5 +40,7 @@ export default function CreateHeroRoute() {
 					onSubmit={onSubmit}
 				/>	
 			);
+		default:
+			return null;
 	}
 }
