@@ -3,15 +3,18 @@ import React, {
 	//useEffect, 
 	useReducer 
 } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
 import BubbleText from '../Components/BubbleText';
 
-import ApiService from '../services/ApiService';
+import { login } from '../actions/AuthActions';
+
 
 export default function LoginRoute() { 
+	const dispatch = useDispatch();
 	const initialState = {
 		username: '',
 		password: ''
@@ -33,11 +36,11 @@ export default function LoginRoute() {
 		}
 	}
 
-	const login = async (e) => {
+	const sendCredentials = async (e) => {
 		e.preventDefault();
 		try {
 			setLoading(true);
-			await ApiService.login(credentials);
+			await dispatch(login(credentials))
 			setLoading(false);
 			history.push('/heroes');
 			alert('YAY! You logged in!');
@@ -94,8 +97,8 @@ export default function LoginRoute() {
 						disabled={!credentials.username || !credentials.password || isLoading}
 						type='submit'
 						className='big-text'
+						onClick={sendCredentials}
 						text={isLoading ? 'INGRESANDO...' :'INGRESAR'}
-						onClick={login}
 					/>
 				</div>
 				{/*<Link

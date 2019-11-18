@@ -10,16 +10,20 @@ const ApiService = {
 		return this.makeRequest({ method, url, data })
 	},
 
+	getSuperheroes() {
+		const method = 'GET';
+		const url = '/superheroes';
+
+		return this.makeAuthorizedRequest({ method, url })
+	},
+
 	async makeRequest(requestData = {}) {
 		let res = await ednaAuthAxios(requestData);
 		return res.data;
 	},
 
 	async makeAuthorizedRequest(requestData = {}) {
-		let res = await ednaApiAxios({
-			...requestData
-			// add headers
-		});
+		let res = await ednaApiAxios(requestData);
 		return res.data;
 	}
 }
