@@ -1,5 +1,5 @@
 import React, { 
-	useState, 
+	// useState, 
 	// useEffect, 
 } from 'react';
 import { useHistory } from "react-router-dom";
@@ -36,8 +36,9 @@ export default function CreateHeroStep1(props) {
 			</div>
 			<div className='flex justify-content-flex-end big-padding-vertical'>
 				<PillBtn 
-					disabled={!props.name && !props.powers.length}
+					disabled={!props.name.value || !props.powers.value.length}
 					text='SIGUIENTE'
+					onClick={() => props.changeStep(2)}
 				/>
 			</div>
 		</div>
