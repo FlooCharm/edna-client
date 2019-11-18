@@ -46,6 +46,7 @@ export default function CreateHeroRoute() {
 			</div>
 			<div className='flex justify-content-flex-end big-padding-vertical'>
 				<PillBtn 
+					disabled={!name && !powers.length}
 					text='SIGUIENTE'
 				/>
 			</div>

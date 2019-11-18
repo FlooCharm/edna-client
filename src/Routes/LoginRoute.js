@@ -1,5 +1,5 @@
 import React, { 
-	//useState, 
+	useState,
 	//useEffect, 
 	useReducer 
 } from 'react';
@@ -16,10 +16,10 @@ export default function LoginRoute() {
 		username: '',
 		password: ''
 	};
-
+	
 	const history = useHistory();
-
 	const [credentials, dispatchCredentials] = useReducer(reducer, initialState);
+	const [isLoading, setLoading] = useState(false);
 
 	function reducer(state, action) {
 		switch (action.type) {
@@ -36,11 +36,14 @@ export default function LoginRoute() {
 	const login = async (e) => {
 		e.preventDefault();
 		try {
-			await ApiService.login(credentials)
+			setLoading(true);
+			await ApiService.login(credentials);
+			setLoading(false);
 			history.push('/heroes');
 			alert('YAY! You logged in!');
 		} catch (e) {
 			alert('Welp u failed');
+			setLoading(false);
 		}
 	}
 
@@ -88,9 +91,10 @@ export default function LoginRoute() {
 				</div>
 				<div className='flex justify-content-flex-end'>
 					<PillBtn 
+						disabled={!credentials.username || !credentials.password || isLoading}
 						type='submit'
 						className='big-text'
-						text='INGRESAR'
+						text={isLoading ? 'INGRESANDO...' :'INGRESAR'}
 						onClick={login}
 					/>
 				</div>
