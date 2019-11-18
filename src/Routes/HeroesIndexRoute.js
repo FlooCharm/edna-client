@@ -25,7 +25,8 @@ export default function HeroesIndexRoute() {
 				/>	
 			</div>
 			<SimpleCard
-				className='padded hero-card'
+				className='padded hero-card clickable'
+				onClick={() => history.push('/detail')}
 			>
 				<p className='no-margin big-text text-center'>SOME HERO NAME</p>
 			</SimpleCard>
