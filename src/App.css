@@ -21,6 +21,7 @@ body { font-family: 'Abel', sans-serif; }
 .flex05 { flex: 0.5; }
 .column { flex-direction: column; }
 
+.align-self-flex-end { align-self: flex-end; }
 .align-items-center { align-items: center; }
 .align-items-flex-end { align-items: flex-end; }
 
@@ -44,10 +45,12 @@ body { font-family: 'Abel', sans-serif; }
 .no-margin { margin: 0; }
 .reversed-margin-top { margin-top: -1em; }
 
-.margin-right { margin-right: 1em; }
+.small-margin-vertical { margin: 1em 0; }
 .small-margin-left { margin-left: 0.5em; }
+.margin-right { margin-right: 1em; }
 .margin-bottom { margin-bottom: 1em; }
 .big-margin-bottom { margin-bottom: 2em; }
+.big-margin-right { margin-right: 2em; }
 
 .margin-auto { margin: auto; }
 
@@ -61,6 +64,8 @@ body { font-family: 'Abel', sans-serif; }
 .padding-right { padding-right: 1em; }
 .big-padding-left { padding-left: 2em; }
 .big-padding-bottom { padding-bottom: 2em; }
+.huge-padding-top { padding-top: 4em; }
+.huge-padding-bottom { padding-bottom: 4em; }
 
 .padding-horizontal { padding: 0 2em; }
 .big-padding-horizontal { padding: 0 4em; }
@@ -222,5 +227,20 @@ body { font-family: 'Abel', sans-serif; }
 	border-radius: 5px;
 	font-size: 1.2em;
 }
-
 .radio-tabs > label:before { color: #EF2626 !important; }
+
+/*ColorSquares*/
+.color-square {
+	width: 45px;
+	height: 45px;
+	border-radius: 10px;
+	margin: 0 0.5em;
+	border: 2px solid #fff;
+}
+.color-square.selected { border-color: rgba(255, 255, 255, 0.2) }
+.add-color-square {
+	border: none;
+	width: 49px;
+	height: 49px;
+	background: rgba(255, 255, 255, 0.5);
+}

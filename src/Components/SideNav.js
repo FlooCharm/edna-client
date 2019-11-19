@@ -6,6 +6,7 @@ import { List, Grid, LogOut } from 'react-feather';
 export default function SideBar ({ location, history }) {
 	return (
 		(location.pathname !== '/login') &&
+        (location.pathname !== '/detail') &&
 		(location.pathname !== '/create-hero') &&
 		(location.pathname !== '/create-suit') &&
         (
