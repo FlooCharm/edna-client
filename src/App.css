@@ -47,10 +47,14 @@ body { font-family: 'Abel', sans-serif; }
 
 .small-margin-vertical { margin: 1em 0; }
 .small-margin-left { margin-left: 0.5em; }
+.small-margin-bottom { margin-bottom: 0.5em; }
 .margin-right { margin-right: 1em; }
+.margin-left { margin-left: 1em; }
 .margin-bottom { margin-bottom: 1em; }
 .big-margin-bottom { margin-bottom: 2em; }
 .big-margin-right { margin-right: 2em; }
+.big-margin-left { margin-left: 2em; }
+.huge-margin-bottom { margin-bottom: 4em; }
 
 .margin-auto { margin: auto; }
 

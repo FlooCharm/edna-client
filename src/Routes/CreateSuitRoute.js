@@ -11,7 +11,7 @@ import CreateSuitStep2 from '../Components/CreateSuitStep2';
 
 export default function CreateSuitRoute() { 
 	const history = useHistory();
-	const [step, setStep] = useState(1);
+	const [step, setStep] = useState(2);
 	const wearer = useFormValue('');
 	const material = useFormValue('');
 	const [colors, setColors] = useState(['#EF2626']);
@@ -31,7 +31,6 @@ export default function CreateSuitRoute() {
 	const deleteColor = (index) => {
 		let newColors = colors.slice();
 		newColors.splice(index, 1);
-		console.log(newColors);
 		setColors(newColors);	
 	}
 
@@ -56,6 +55,7 @@ export default function CreateSuitRoute() {
 		case 2: 
 			return (
 				<CreateSuitStep2
+					changeStep={changeStep}
 				/>	
 			);
 		default:

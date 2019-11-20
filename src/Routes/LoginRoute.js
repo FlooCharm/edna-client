@@ -12,7 +12,6 @@ import BubbleText from '../Components/BubbleText';
 
 import { login } from '../actions/AuthActions';
 
-
 export default function LoginRoute() { 
 	const dispatch = useDispatch();
 	const initialState = {
