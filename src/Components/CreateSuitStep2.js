@@ -1,6 +1,6 @@
 import React, { 
-	useReducer,
-	useState, 
+	// useReducer,
+	useState,
 	useEffect, 
 } from 'react';
 
@@ -8,49 +8,16 @@ import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
 
 export default function CreateHeroStep2(props) { 
-	const initialState = {
-		lengthLeftArm: '',
-		widthLeftArm: '',
-		lengthRightArm: '',
-		widthRightArm: '',
-		lengthLeftLeg: '',
-		widthLeftLeg: '',
-		lengthRightLeg: '',
-		widthRightLeg: '',
-		neck: '',
-		chest: '',
-		waist: '',
-		hips: '',
-		torso: '',
-		head: '',
-	};
-
-	const [measures, dispatchMeasures] = useReducer(reducer, initialState);
+	
 	const [hasMinimumData, setMinimumData] = useState(false);
 
 	useEffect(() => {
 		let hasMinimum = true;
-		for (let key in measures) {
-			hasMinimum = hasMinimum && measures[key];
+		for (let key in props.measures) {
+			hasMinimum = hasMinimum && props.measures[key];
 		}
 		setMinimumData(hasMinimum);
-	}, [measures]);
-
-	function reducer(state, action) {
-		switch (action.type) {
-			case 'SET_STATE':
-				return {
-					...state,
-					[action.prop]: action.payload
-				}
-			default:
-				break;
-		}
-	}
-
-	const onChangeText = ({ value }, prop) => {
-		dispatchMeasures({ type: 'SET_STATE', payload: value, prop});
-	}
+	}, [props.measures]);
 
 	return (
 		<form className="full-container black-bg column justify-content-space-between">
@@ -72,8 +39,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.lengthLeftArm}
-							onChange={({ target }) => onChangeText(target, 'lengthLeftArm')}
+							value={props.measures.lengthLeftArm}
+							onChange={({ target }) => props.onChangeText(target, 'lengthLeftArm')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -82,8 +49,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.widthLeftArm}
-							onChange={({ target }) => onChangeText(target, 'widthLeftArm')}
+							value={props.measures.widthLeftArm}
+							onChange={({ target }) => props.onChangeText(target, 'widthLeftArm')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -92,8 +59,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.lengthRightArm}
-							onChange={({ target }) => onChangeText(target, 'lengthRightArm')}
+							value={props.measures.lengthRightArm}
+							onChange={({ target }) => props.onChangeText(target, 'lengthRightArm')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -102,8 +69,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.widthRightArm}
-							onChange={({ target }) => onChangeText(target, 'widthRightArm')}
+							value={props.measures.widthRightArm}
+							onChange={({ target }) => props.onChangeText(target, 'widthRightArm')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -112,8 +79,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.neck}
-							onChange={({ target }) => onChangeText(target, 'neck')}
+							value={props.measures.neck}
+							onChange={({ target }) => props.onChangeText(target, 'neck')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -122,8 +89,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.head}
-							onChange={({ target }) => onChangeText(target, 'head')}
+							value={props.measures.head}
+							onChange={({ target }) => props.onChangeText(target, 'head')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -132,8 +99,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.torso}
-							onChange={({ target }) => onChangeText(target, 'torso')}
+							value={props.measures.torso}
+							onChange={({ target }) => props.onChangeText(target, 'torso')}
 						/>
 					</div>
 				</div>
@@ -144,8 +111,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.lengthLeftLeg}
-							onChange={({ target }) => onChangeText(target, 'lengthLeftLeg')}
+							value={props.measures.lengthLeftLeg}
+							onChange={({ target }) => props.onChangeText(target, 'lengthLeftLeg')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -154,8 +121,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.widthLeftLeg}
-							onChange={({ target }) => onChangeText(target, 'widthLeftLeg')}
+							value={props.measures.widthLeftLeg}
+							onChange={({ target }) => props.onChangeText(target, 'widthLeftLeg')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -164,8 +131,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.lengthRightLeg}
-							onChange={({ target }) => onChangeText(target, 'lengthRightLeg')}
+							value={props.measures.lengthRightLeg}
+							onChange={({ target }) => props.onChangeText(target, 'lengthRightLeg')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -174,8 +141,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.widthRightLeg}
-							onChange={({ target }) => onChangeText(target, 'widthRightLeg')}
+							value={props.measures.widthRightLeg}
+							onChange={({ target }) => props.onChangeText(target, 'widthRightLeg')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -184,8 +151,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.chest}
-							onChange={({ target }) => onChangeText(target, 'chest')}
+							value={props.measures.chest}
+							onChange={({ target }) => props.onChangeText(target, 'chest')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -194,8 +161,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.waist}
-							onChange={({ target }) => onChangeText(target, 'waist')}
+							value={props.measures.waist}
+							onChange={({ target }) => props.onChangeText(target, 'waist')}
 						/>
 					</div>
 					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
@@ -204,8 +171,8 @@ export default function CreateHeroStep2(props) {
 							className='black-bg'
 							placeholder='Medida'
 							type='number'
-							value={measures.hips}
-							onChange={({ target }) => onChangeText(target, 'hips')}
+							value={props.measures.hips}
+							onChange={({ target }) => props.onChangeText(target, 'hips')}
 						/>
 					</div>
 				</div>

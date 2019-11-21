@@ -1,5 +1,6 @@
 import React, { 
-	useState, 
+	useState,
+	useReducer
 	// useEffect, 
 } from 'react';
 import { useHistory } from "react-router-dom";
@@ -11,11 +12,45 @@ import CreateSuitStep2 from '../Components/CreateSuitStep2';
 import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
 export default function CreateSuitRoute() { 
+
+	const initialState = {
+		lengthLeftArm: '',
+		widthLeftArm: '',
+		lengthRightArm: '',
+		widthRightArm: '',
+		lengthLeftLeg: '',
+		widthLeftLeg: '',
+		lengthRightLeg: '',
+		widthRightLeg: '',
+		neck: '',
+		chest: '',
+		waist: '',
+		hips: '',
+		torso: '',
+		head: '',
+	};
 	const history = useHistory();
 	const [step, setStep] = useState(3);
-	const wearer = useFormValue('');
-	const material = useFormValue('');
+	const wearer = useFormValue('mujer');
+	const material = useFormValue('naturales');
 	const [colors, setColors] = useState(['#EF2626']);
+	const [measures, dispatchMeasures] = useReducer(reducer, initialState);
+	
+	function reducer(state, action) {
+		switch (action.type) {
+			case 'SET_STATE':
+				return {
+					...state,
+					[action.prop]: action.payload
+				}
+			default:
+				break;
+		}
+	}
+
+	const onChangeText = ({ value }, prop) => {
+		dispatchMeasures({ type: 'SET_STATE', payload: value, prop});
+	}
 
 	const changeColors = (value, index) => {
 		let newColors = colors.slice();
@@ -56,6 +91,8 @@ export default function CreateSuitRoute() {
 		case 2: 
 			return (
 				<CreateSuitStep2
+					onChangeText={onChangeText}
+					measures={measures}
 					changeStep={changeStep}
 				/>	
 			);

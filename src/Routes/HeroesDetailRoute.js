@@ -14,6 +14,7 @@ import ChipsInput from '../Components/ChipsInput';
 import RadioTabs from '../Components/RadioTabs';
 
 export default function HeroesDetailRoute() { 
+	
 	const history = useHistory();
 	const [isEditOpen, setEditOpen] = useState(false);
 	const [isDeleteHero, setDeleteHero] = useState(false);
