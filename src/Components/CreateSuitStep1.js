@@ -17,13 +17,13 @@ export default function CreateHeroStep1(props) {
 		{ label: 'Hombre', value: 'hombre' },
 		{ label: 'Niña', value: 'niña' },
 		{ label: 'Niño', value: 'niño' },
-		{ label: 'Bebé', value: 'bebé' },
-	]
+		{ label: 'Bebé', value: 'bebe' },
+	];
 	const materialOpts = [
 		{ label: 'Fibras naturales', value: 'naturales', default: true },
 		{ label: 'Fibras artificiales', value: 'artificiales' },
-		{ label: 'Fibras sintéticas', value: 'sintéticas' },
-	]
+		{ label: 'Fibras sintéticas', value: 'sinteticas' },
+	];
 
 	const addColor = () => {
 		props.addColor();
@@ -58,6 +58,7 @@ export default function CreateHeroStep1(props) {
 						<RadioTabs 
 							name='wearer'
 							options={wearerOpts}
+							selected={props.wearer.value}
 							onChange={props.wearer.onChange}
 						/>
 					</div>
@@ -66,6 +67,7 @@ export default function CreateHeroStep1(props) {
 						<RadioTabs 
 							name='material'
 							options={materialOpts}
+							selected={props.material.value}
 							onChange={props.material.onChange}
 						/>
 					</div>

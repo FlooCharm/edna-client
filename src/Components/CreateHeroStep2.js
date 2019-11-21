@@ -40,6 +40,7 @@ export default function CreateHeroStep2(props) {
 					<RadioTabs 
 						name='elements'
 						options={options}
+						selected={props.element.value}
 						onChange={props.element.onChange}
 					/>
 				</div>
