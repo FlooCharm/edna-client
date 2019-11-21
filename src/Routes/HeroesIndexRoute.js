@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
 import PillBtn from '../Components/PillBtn';
+import ManSilhouette from '../Components/ManSilhouette';
 
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
@@ -24,6 +25,7 @@ export default function HeroesIndexRoute() {
 					onChange={(e) => setFilterText(e.target.value)}
 				/>	
 			</div>
+			<ManSilhouette maskColor='#0ff000' onMaskClick={() => alert('adfasfda')}/>
 			<SimpleCard
 				className='padded hero-card clickable'
 				onClick={() => history.push('/detail')}
