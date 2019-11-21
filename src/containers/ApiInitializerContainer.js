@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, useStore } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { ednaApiAxios } from '../utils/Axios.js';
 
-import { clearSession, setHeaders } from '../actions/AuthActions';
+import { clearSession } from '../actions/AuthActions';
 
 export default function ApiInitializerContainer (props) {
-	const accessToken = useSelector(state => state.Auth.access_token)
-	const dispatch = useDispatch()
+	const accessToken = useSelector(state => state.Auth.access_token);
+	const store = useStore();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		ednaApiAxios.interceptors.request.use(request => {
-			request.headers['Authorization'] = `Bearer ${accessToken}`;
+			request.headers['Authorization'] = `Bearer ${store.getState().Auth.access_token}`;
 			return request;
 		});
 		ednaApiAxios.interceptors.response.use(response => response, async error => {
@@ -21,8 +22,7 @@ export default function ApiInitializerContainer (props) {
 			} else {}
 			return Promise.reject(error);
 		});
-		dispatch(setHeaders())
-	}, [accessToken])
+	}, [accessToken]);
 
 	return (props.children);
 }

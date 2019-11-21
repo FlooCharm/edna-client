@@ -6,7 +6,7 @@ import {
 	Redirect
 	//Link 
 } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useStore, useSelector } from 'react-redux';
 
 import LoginRoute from './Routes/LoginRoute';
 import SignUpRoute from './Routes/SignUpRoute';
@@ -15,6 +15,7 @@ import HeroesDetailRoute from './Routes/HeroesDetailRoute';
 import GalleryRoute from './Routes/GalleryRoute';
 import CreateHeroRoute from './Routes/CreateHeroRoute';
 import CreateSuitRoute from './Routes/CreateSuitRoute';
+import { ednaApiAxios } from './utils/Axios.js';
 
 import SideNav from './Components/SideNav';
 
@@ -50,7 +51,7 @@ export default function Routes () {
 								history={history}
 							/>
 				            <main>
-				               	<PrivateRoute path="/heroes">
+				               	<PrivateRoute exact path="/">
 									<HeroesIndexRoute />
 								</PrivateRoute>
 								<PrivateRoute path="/gallery">
@@ -67,20 +68,25 @@ export default function Routes () {
 
 function PrivateRoute({ children, ...rest }) {
 	const accessToken = useSelector(state => state.Auth.access_token);
-	return (
-		<Route
-			{...rest}
-			render={({ location }) =>
-				accessToken ? (
-				children
-			) : (
-				<Redirect
-					to={{
-						pathname: "/login",
-						state: { from: location }
-					}}
-				/>
-			)}
-		/>
-	);
+	const rehydrated = useSelector(state => state._persist.rehydrated);
+	
+
+	if (rehydrated) {
+		return (
+			<Route
+				{...rest}
+				render={({ location }) =>
+					accessToken ? (
+					children
+				) : (
+					<Redirect
+						to={{
+							pathname: "/login",
+							state: { from: location }
+						}}
+					/>
+				)}
+			/>
+		);
+	} else return null;
 }

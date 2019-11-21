@@ -72,7 +72,7 @@ export default function CreateSuitRoute() {
 
 	const changeStep = (value) => setStep(value);
 	// const onSubmit = () => {
-	// 	history.push('/heroes');
+	// 	history.push('/');
 	// }
 	
 	switch (step) {

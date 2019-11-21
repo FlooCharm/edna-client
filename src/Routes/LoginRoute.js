@@ -41,7 +41,7 @@ export default function LoginRoute() {
 			setLoading(true);
 			await dispatch(login(credentials))
 			setLoading(false);
-			history.push('/heroes');
+			history.push('/');
 			alert('YAY! You logged in!');
 		} catch (e) {
 			alert('Welp u failed');

@@ -22,11 +22,11 @@ export default function SideBar ({ location, history }) {
             <div className='sidenav-sticky'>
                 <SideNav
                     onSelect={(selected) => {
-                    	if (selected === 'logout') {
+                    	if (selected === '/logout') {
                             logout();
     						history.push('login');
                     	} else {
-    	                    const to = '/' + selected || '';
+    	                    const to = selected || '';
     	                    if (location.pathname !== to) {
     	                        history.push(to);
     	                    }
@@ -41,8 +41,8 @@ export default function SideBar ({ location, history }) {
     						src="assets/edna.svg" 
     					/>	
     				</div>
-                    <SideNav.Nav defaultSelected="heroes">
-                        <NavItem  eventKey="heroes">
+                    <SideNav.Nav defaultSelected={location.pathname}>
+                        <NavItem  eventKey="/">
                             <NavIcon>
                                <List color='#ffffff'/>
                             </NavIcon>
@@ -50,7 +50,7 @@ export default function SideBar ({ location, history }) {
                                 Superhéroes
                             </NavText>
                         </NavItem>
-                        <NavItem eventKey="gallery">
+                        <NavItem eventKey="/gallery">
                             <NavIcon>
                                <Grid color='#ffffff'/>
                             </NavIcon>
@@ -60,7 +60,7 @@ export default function SideBar ({ location, history }) {
                         </NavItem>
                     	<NavItem 
                     		navitemClassName='sidenav-last-item'
-                    		eventKey="logout">
+                    		eventKey="/logout">
                             <NavIcon>
                                <LogOut color='#ffffff'/>
                             </NavIcon>

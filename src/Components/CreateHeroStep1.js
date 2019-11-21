@@ -17,7 +17,7 @@ export default function CreateHeroStep1(props) {
 				<div className='margin-right'>
 					<PillBtn 
 						text='REGRESAR'
-						onClick={() => history.push('/heroes')}
+						onClick={() => history.push('/')}
 						left
 					/>
 				</div>

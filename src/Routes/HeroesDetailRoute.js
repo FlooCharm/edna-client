@@ -27,7 +27,7 @@ export default function HeroesDetailRoute() {
 					<div className='margin-right'>
 						<PillBtn 
 							text='REGRESAR'
-							onClick={() => history.push('/heroes')}
+							onClick={() => history.push('/')}
 							left
 						/>
 					</div>

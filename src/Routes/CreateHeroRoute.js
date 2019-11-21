@@ -31,7 +31,7 @@ export default function CreateHeroRoute() {
 			element: element.value
 		}
 		await dispatch(createSuperhero(newSuperhero))
-		history.push('/heroes');
+		history.push('/');
 	}
 	
 	switch (step) {
