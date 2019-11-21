@@ -25,7 +25,7 @@ export default function HeroesIndexRoute() {
 					onChange={(e) => setFilterText(e.target.value)}
 				/>	
 			</div>
-			<ManSilhouette maskColor='#0ff000' onMaskClick={() => alert('adfasfda')}/>
+			<ManSilhouette colors={{mask: '#0ff000'}} onClick={() => alert('adfasfda')}/>
 			<SimpleCard
 				className='padded hero-card clickable'
 				onClick={() => history.push('/detail')}
