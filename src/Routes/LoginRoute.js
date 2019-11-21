@@ -3,7 +3,7 @@ import React, {
 	//useEffect, 
 	useReducer 
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
@@ -21,7 +21,8 @@ export default function LoginRoute() {
 	
 	const history = useHistory();
 	const [credentials, dispatchCredentials] = useReducer(reducer, initialState);
-	const [isLoading, setLoading] = useState(false);
+	const isLoading = useSelector(state => state.Auth.isLoading)
+	const error = useSelector(state => state.Auth.error)
 
 	function reducer(state, action) {
 		switch (action.type) {
@@ -37,15 +38,13 @@ export default function LoginRoute() {
 
 	const sendCredentials = async (e) => {
 		e.preventDefault();
-		try {
-			setLoading(true);
-			await dispatch(login(credentials))
-			setLoading(false);
+		await dispatch(login(credentials))
+		if(!error){
 			history.push('/');
 			alert('YAY! You logged in!');
-		} catch (e) {
+		} else {
+			console.log(error)
 			alert('Welp u failed');
-			setLoading(false);
 		}
 	}
 
