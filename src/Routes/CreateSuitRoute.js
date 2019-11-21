@@ -8,10 +8,11 @@ import useFormInput from '../custom-hooks/useFormInput';
 import useFormValue from '../custom-hooks/useFormValue';
 import CreateSuitStep1 from '../Components/CreateSuitStep1';
 import CreateSuitStep2 from '../Components/CreateSuitStep2';
+import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
 export default function CreateSuitRoute() { 
 	const history = useHistory();
-	const [step, setStep] = useState(2);
+	const [step, setStep] = useState(3);
 	const wearer = useFormValue('');
 	const material = useFormValue('');
 	const [colors, setColors] = useState(['#EF2626']);
@@ -55,6 +56,13 @@ export default function CreateSuitRoute() {
 		case 2: 
 			return (
 				<CreateSuitStep2
+					changeStep={changeStep}
+				/>	
+			);
+		case 3: 
+			return (
+				<CreateSuitStep3
+					colors={colors}
 					changeStep={changeStep}
 				/>	
 			);

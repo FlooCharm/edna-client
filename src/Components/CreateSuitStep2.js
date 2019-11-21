@@ -3,14 +3,11 @@ import React, {
 	useState, 
 	useEffect, 
 } from 'react';
-import { useHistory } from "react-router-dom";
 
 import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
-import ChipsInput from '../Components/ChipsInput';
 
 export default function CreateHeroStep2(props) { 
-	const history = useHistory();
 	const initialState = {
 		lengthLeftArm: '',
 		widthLeftArm: '',
@@ -56,7 +53,7 @@ export default function CreateHeroStep2(props) {
 	}
 
 	return (
-		<div className="full-container black-bg column justify-content-space-between">
+		<form className="full-container black-bg column justify-content-space-between">
 			<div className='flex row align-items-center big-padding-vertical'>
 				<div className='margin-right'>
 					<PillBtn 
@@ -215,10 +212,14 @@ export default function CreateHeroStep2(props) {
 			</div>
 			<PillBtn 
 				className='align-self-flex-end small-margin-vertical'
+				type='submit'
 				text='SIGUIENTE'
 				disabled={!hasMinimumData}
-				onClick={() => props.changeStep(2)}
+				onClick={(e) => {
+					e.preventDefault();
+					props.changeStep(3)
+				}}
 			/>
-		</div>
+		</form>
 	)
 }
