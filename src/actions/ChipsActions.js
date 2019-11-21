@@ -1,16 +1,14 @@
-import ApiService from '../services/ApiService';
-
 export const SET_POWERS = 'SET_POWERS';
 export const SET_WEATHERS = 'SET_WEATHERS';
 
 export function setChips (type, value) {
 	return async (dispatch, getState) => {
 		if(type === 'powers'){
-			let powers = getState().powers.slice();
+			let powers = getState().Chips.powers.slice();
 			powers.push(value);
 			dispatch(setPowers(powers))
 		} else {
-			let weathers = getState().weathers.slice();
+			let weathers = getState().Chips.weathers.slice();
 			weathers.push(value);
 			dispatch(setWeathers(weathers))
 		}

@@ -1,16 +1,24 @@
 import React, { 
 	useState, 
-	// useEffect, 
+	useEffect, 
 } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
 import PillBtn from '../Components/PillBtn';
 
+import { fetchSuperheroes } from '../actions/SuperheroesActions';
+
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
 	const history = useHistory();
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchSuperheroes())
+	}, [])
 
 	return (
 		<div className="container flex column align-items-center justify-content-space-around">

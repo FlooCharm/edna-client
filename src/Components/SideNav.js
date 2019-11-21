@@ -1,10 +1,19 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { List, Grid, LogOut } from 'react-feather';
 
+import { clearSession } from '../actions/AuthActions';
+
 export default function SideBar ({ location, history }) {
-	return (
+	const dispatch = useDispatch();
+
+    const logout = () => {
+        dispatch(clearSession());
+    }
+
+    return (
 		(location.pathname !== '/login') &&
         (location.pathname !== '/detail') &&
 		(location.pathname !== '/create-hero') &&
@@ -14,6 +23,7 @@ export default function SideBar ({ location, history }) {
                 <SideNav
                     onSelect={(selected) => {
                     	if (selected === 'logout') {
+                            logout();
     						history.push('login');
                     	} else {
     	                    const to = '/' + selected || '';

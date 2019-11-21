@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ednaApiAxios } from '../utils/Axios.js';
+
+import { clearSession } from '../actions/AuthActions';
 
 export default function ApiInitializerContainer (props) {
 	const accessToken = useSelector(state => state.Auth.access_token)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if(accessToken){
@@ -12,6 +15,14 @@ export default function ApiInitializerContainer (props) {
 				return request;
 			})
 		}
+		ednaApiAxios.interceptors.response.use(response => response, async error => {
+			const status = error.response ? error.response.status : null;
+			if (status === 401) {
+				await dispatch(clearSession());
+				return ednaApiAxios(error.config);
+			}
+			return Promise.reject(error);
+		});
 	}, [accessToken])
 
 	return (props.children);
