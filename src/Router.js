@@ -3,8 +3,10 @@ import {
 	BrowserRouter as Router, 
 	Switch, 
 	Route, 
+	Redirect
 	//Link 
 } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import LoginRoute from './Routes/LoginRoute';
 import SignUpRoute from './Routes/SignUpRoute';
@@ -17,6 +19,7 @@ import CreateSuitRoute from './Routes/CreateSuitRoute';
 import SideNav from './Components/SideNav';
 
 export default function Routes () {
+
 	return (
 		<Router>
 
@@ -29,15 +32,15 @@ export default function Routes () {
 					<Route path="/login">
 						<LoginRoute />
 					</Route>
-					<Route path="/detail">
+					<PrivateRoute path="/detail">
 						<HeroesDetailRoute />
-					</Route>
-					<Route path="/create-hero">
+					</PrivateRoute>
+					<PrivateRoute path="/create-hero">
 						<CreateHeroRoute />
-					</Route>
-					<Route path="/create-suit">
+					</PrivateRoute>
+					<PrivateRoute path="/create-suit">
 						<CreateSuitRoute />
-					</Route>
+					</PrivateRoute>
 				</Switch>
 				<Route 
 					render={({ location, history }) => (
@@ -47,17 +50,37 @@ export default function Routes () {
 								history={history}
 							/>
 				            <main>
-				               	<Route path="/heroes">
+				               	<PrivateRoute path="/heroes">
 									<HeroesIndexRoute />
-								</Route>
-								<Route path="/gallery">
+								</PrivateRoute>
+								<PrivateRoute path="/gallery">
 									<GalleryRoute />
-								</Route>
+								</PrivateRoute>
 				            </main>
 				        </React.Fragment>
 			  	  	)}
 			    />
 
 		</Router>
+	);
+}
+
+function PrivateRoute({ children, ...rest }) {
+	const accessToken = useSelector(state => state.Auth.access_token);
+	return (
+		<Route
+			{...rest}
+			render={({ location }) =>
+				accessToken ? (
+				children
+			) : (
+				<Redirect
+					to={{
+						pathname: "/login",
+						state: { from: location }
+					}}
+				/>
+			)}
+		/>
 	);
 }
