@@ -10,6 +10,7 @@ export default function PillBtn(props) {
 		<button 
 			type={props.type}
 			className={`pill-btn body-text ${props.className} ${props.left && 'left'}`}
+			style={{ background: props.background }}
 			disabled={props.disabled}
 			onClick={props.onClick}
 		>
@@ -22,6 +23,7 @@ PillBtn.propTypes = {
 	className: PropTypes.string,
 	text: PropTypes.string,
 	type: PropTypes.string,
+	background: PropTypes.string,
 	onClick: PropTypes.func,
 	disabled: PropTypes.bool,
 	left: PropTypes.bool,
@@ -34,4 +36,5 @@ PillBtn.defaultProps = {
 	onClick: () => {},
 	disabled: false,
 	left: false,
+	background: '#EF2626'
 }

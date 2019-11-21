@@ -31,6 +31,7 @@ export default function CreateHeroStep2(props) {
 			<div className='flex column big-padding-horizontal'>
 				<div className='big-margin-bottom'>
 					<ChipsInput
+						containerClassName='width60'
 						placeholder='Clima'
 						{...props.weather}
 					/>
