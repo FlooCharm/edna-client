@@ -1,9 +1,11 @@
 import ApiService from '../services/ApiService';
+import { ednaApiAxios } from '../utils/Axios.js';
 
 export const LOGIN_BEGIN = 'LOGIN_BEGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const CLEAR_SESSION = 'CLEAR_SESSION';
+export const SET_HEADERS = 'SET_HEADERS';
 
 export function login (credentials) {
 	return async (dispatch) => {
@@ -20,6 +22,10 @@ export function login (credentials) {
 
 export const clearSession = () => ({
 	type: CLEAR_SESSION
+})
+
+export const setHeaders = () => ({
+	type: SET_HEADERS
 })
 
 export const loginBegin = () => ({

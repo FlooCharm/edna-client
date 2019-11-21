@@ -19,6 +19,7 @@ import SideNav from './Components/SideNav';
 export default function Routes () {
 	return (
 		<Router>
+
 				{/* A <Switch> looks through its children <Route>s and
 						renders the first one that matches the current URL. */}
 				<Switch>
@@ -56,6 +57,7 @@ export default function Routes () {
 				        </React.Fragment>
 			  	  	)}
 			    />
+
 		</Router>
 	);
 }

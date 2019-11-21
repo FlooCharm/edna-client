@@ -2,7 +2,8 @@ import {
 	LOGIN_BEGIN,
 	LOGIN_SUCCESS,
 	LOGIN_FAILURE,
-	CLEAR_SESSION
+	CLEAR_SESSION,
+	SET_HEADERS
 } from '../actions/AuthActions.js';
 
 const initialState = {
@@ -22,9 +23,13 @@ export default function AuthReducer(state = initialState, action) {
 		case LOGIN_SUCCESS:
 			return {
 				...state,
-				isLoading: false,
 				access_token: action.payload.access_token,
 				error: ''
+			}
+		case SET_HEADERS:
+			return {
+				...state,
+				isLoading: false
 			}
 		case LOGIN_FAILURE:
 			return {
