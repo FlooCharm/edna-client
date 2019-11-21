@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 
 import PillBtn from '../Components/PillBtn';
 import ColorSquares from '../Components/ColorSquares';
+import HeroSuit from '../Components/HeroSuit';
 
 export default function CreateHeroStep2(props) { 
 	const history = useHistory();
@@ -23,6 +24,9 @@ export default function CreateHeroStep2(props) {
 				<p className='huge-text white-text no-margin'>Traje (selección de colores)</p>
 			</div>
 			<div className='flex flex1 justify-content-space-around'>
+				<HeroSuit 
+					wearer='hombre'
+				/>
 				<ColorSquares 
 					colors={props.colors}
 				/>
