@@ -47,6 +47,7 @@ body { font-family: 'Abel', sans-serif; }
 
 .small-margin-vertical { margin: 1em 0; }
 .small-margin-left { margin-left: 0.5em; }
+.small-margin-right { margin-right: 0.5em; }
 .small-margin-bottom { margin-bottom: 0.5em; }
 .margin-right { margin-right: 1em; }
 .margin-left { margin-left: 1em; }
@@ -54,6 +55,7 @@ body { font-family: 'Abel', sans-serif; }
 .big-margin-bottom { margin-bottom: 2em; }
 .big-margin-right { margin-right: 2em; }
 .big-margin-left { margin-left: 2em; }
+.huge-margin-right { margin-right: 4em; }
 .huge-margin-bottom { margin-bottom: 4em; }
 
 .margin-auto { margin: auto; }
@@ -172,6 +174,23 @@ body { font-family: 'Abel', sans-serif; }
 .pill-btn:hover { background: #EF2626DD }
 .pill-btn:disabled { 
 	background: #EF262688; 
+	cursor: default;
+}
+
+.icon-btn {
+	outline: none;
+	border: none;
+	border-radius: 100%;
+	color: white;
+	font-family: inherit;
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	padding: 10px;
+}
+.icon-btn:hover { opacity: 0.7 }
+.icon-btn:disabled { 
+	opacity: 0.3;
 	cursor: default;
 }
 
