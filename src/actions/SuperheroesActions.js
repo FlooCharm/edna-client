@@ -2,44 +2,44 @@ import ApiService from '../services/ApiService';
 
 import normalizeById from '../utils/NormalizeById.js';
 
-export const GET_SUPERHEROES_BEGIN = 'GET_SUPERHEROES_BEGIN';
+export const SUPERHEROES_BEGIN = 'SUPERHEROES_BEGIN';
 export const GET_SUPERHEROES_SUCCESS = 'GET_SUPERHEROES_SUCCESS';
-export const GET_SUPERHEROES_FAILURE = 'GET_SUPERHEROES_FAILURE';
+export const SUPERHEROES_FAILURE = 'SUPERHEROES_FAILURE';
 export const UPDATE_SUPERHEROES_BEGIN = 'UPDATE_SUPERHEROES_BEGIN';
 export const UPDATE_SUPERHEROES_SUCCESS = 'UPDATE_SUPERHEROES_SUCCESS';
 export const UPDATE_SUPERHEROES_FAILURE = 'UPDATE_SUPERHEROES_FAILURE';
 
 export function fetchSuperheroes () {
 	return async (dispatch) => {
-		await dispatch(getSuperheroesBegin())
+		await dispatch(superheroesBegin())
 		try {
 			let result = await ApiService.getSuperheroes();
 			let normalized = normalizeById(result.superheroes)
 			dispatch(getSuperheroesSuccess(normalized))
 		}
 		catch(e) {
-			dispatch(getSuperheroesFailure(e))
+			dispatch(superheroesFailure(e))
 		}
 	}
 }
 
 export function fetchSuperhero (id) {
 	return async (dispatch) => {
-		await dispatch(getSuperheroesBegin())
+		await dispatch(superheroesBegin())
 		try {
 			let result = await ApiService.getSuperhero(id);
 			let normalized = normalizeById([result.superhero])
 			dispatch(getSuperheroesSuccess(normalized))
 		}
 		catch(e) {
-			dispatch(getSuperheroesFailure(e))
+			dispatch(superheroesFailure(e))
 		}
 	}
 }
 
 export function createSuperhero (data) {
 	return async (dispatch, getState) => {
-		await dispatch(getSuperheroesBegin())
+		await dispatch(superheroesBegin())
 		try {
 			let stateAllIds = getState().Superheroes.allIds;
 			let stateById = getState().Superheroes.byId;
@@ -50,7 +50,7 @@ export function createSuperhero (data) {
 			dispatch(getSuperheroesSuccess({ byId, allIds }))
 			return result.superhero;
 		} catch (e) {
-			dispatch(getSuperheroesFailure(e))
+			dispatch(superheroesFailure(e))
 		}
 	}
 }
@@ -71,8 +71,19 @@ export function updateSuperhero (id, data) {
 	}
 }
 
-export const getSuperheroesBegin = () => ({
-	type: GET_SUPERHEROES_BEGIN
+export function deleteSuperhero (id) {
+	return async (dispatch) => {
+		await dispatch(superheroesBegin())
+		try {
+			await ApiService.deleteSuperhero(id)
+		} catch (e) {
+			dispatch(superheroesFailure(e))
+		}
+	}
+}
+
+export const superheroesBegin = () => ({
+	type: SUPERHEROES_BEGIN
 })
 
 export const getSuperheroesSuccess = ({ byId, allIds }) => ({
@@ -80,8 +91,8 @@ export const getSuperheroesSuccess = ({ byId, allIds }) => ({
 	payload : { byId, allIds }
 })
 
-export const getSuperheroesFailure = (error) => ({
-	type: GET_SUPERHEROES_FAILURE,
+export const superheroesFailure = (error) => ({
+	type: SUPERHEROES_FAILURE,
 	payload: { error }
 })
 

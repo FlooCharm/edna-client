@@ -1,7 +1,7 @@
 import {
-	GET_SUPERHEROES_BEGIN,
+	SUPERHEROES_BEGIN,
 	GET_SUPERHEROES_SUCCESS,
-	GET_SUPERHEROES_FAILURE,
+	SUPERHEROES_FAILURE,
 	UPDATE_SUPERHEROES_BEGIN,
 	UPDATE_SUPERHEROES_SUCCESS,
 	UPDATE_SUPERHEROES_FAILURE
@@ -17,7 +17,7 @@ const initialState = {
 
 export default function SuperheroesReducer(state = initialState, action) {
 	switch (action.type) {
-		case GET_SUPERHEROES_BEGIN: 
+		case SUPERHEROES_BEGIN: 
 			return {
 				...state,
 				isLoading: true,
@@ -31,7 +31,7 @@ export default function SuperheroesReducer(state = initialState, action) {
 				isLoading: false,
 				error: ''
 			}
-		case GET_SUPERHEROES_FAILURE:
+		case SUPERHEROES_FAILURE:
 			return {
 				...state,
 				isLoading: false,

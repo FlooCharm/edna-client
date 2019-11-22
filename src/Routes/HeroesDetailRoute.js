@@ -15,7 +15,7 @@ import TextInput from '../Components/TextInput';
 import ChipsInput from '../Components/ChipsInput';
 import RadioTabs from '../Components/RadioTabs';
 
-import { fetchSuperhero, updateSuperhero } from '../actions/SuperheroesActions';
+import { fetchSuperhero, updateSuperhero, deleteSuperhero } from '../actions/SuperheroesActions';
 import { setChips } from '../actions/ChipsActions';
 
 export default function HeroesDetailRoute() { 
@@ -28,6 +28,7 @@ export default function HeroesDetailRoute() {
 	const powers = useFormValue([]);
 	const weather = useFormValue([]);
 	const element = useFormValue('fuego');
+	const isLoading = useSelector(state => state.Superheroes.isLoading)
 	const isUpdating = useSelector(state => state.Superheroes.isUpdating)
 	const superhero = useSelector(state => state.Superheroes.byId[id])
 	const defaultPowers = useSelector(state => state.Chips.powers)
@@ -51,7 +52,7 @@ export default function HeroesDetailRoute() {
 		}
 	}, [superhero, isEditOpen])
 
-	const update = async () => {
+	const updateSup = async () => {
 		let newData = {
 			super_name: name.value,
 			weather: weather.value,
@@ -68,6 +69,12 @@ export default function HeroesDetailRoute() {
 		let newWeathers = weather.value.filter(weather => !defaultWeathers.includes(weather))
 		if(newPowers.length) await dispatch(setChips('powers', newPowers))
 		if(newWeathers.length) await dispatch(setChips('weathers', newWeathers))
+	}
+
+	const deleteSup = async () => {
+		await dispatch(deleteSuperhero(superhero._id))
+		setDeleteHero(false)
+		history.push('/')
 	}
 
 	return (
@@ -119,9 +126,9 @@ export default function HeroesDetailRoute() {
 							/>
 							<PillBtn
 								className='flex02 align-self-flex-end'
-								text='Confirmar'
+								text={isLoading ? 'Borrando...' : 'Confirmar'}
 								background='#000'
-								onClick={() => setDeleteHero(false)}
+								onClick={() => deleteSup()}
 							/>
 						</div>
 					</div>
@@ -176,7 +183,7 @@ export default function HeroesDetailRoute() {
 						<PillBtn
 							className='align-self-flex-end margin-bottom'
 							text={isUpdating ? 'Guardando...' : 'Confirmar'}
-							onClick={() => update()}
+							onClick={() => updateSup()}
 						/>
 					</div>
 				</CustomModal>
