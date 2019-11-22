@@ -10,7 +10,7 @@ export default function GalleryRoute() {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchSuits())
+		dispatch(fetchSuits());
 	}, [])
 
 	return (

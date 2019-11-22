@@ -14,6 +14,8 @@ import CustomModal from '../Components/CustomModal';
 import TextInput from '../Components/TextInput';
 import ChipsInput from '../Components/ChipsInput';
 import RadioTabs from '../Components/RadioTabs';
+import HeroSuit from '../Components/HeroSuit';
+import SimpleCard from '../Components/SimpleCard';
 
 import { fetchSuperhero, updateSuperhero, deleteSuperhero } from '../actions/SuperheroesActions';
 import { setChips } from '../actions/ChipsActions';
@@ -28,11 +30,11 @@ export default function HeroesDetailRoute() {
 	const powers = useFormValue([]);
 	const weather = useFormValue([]);
 	const element = useFormValue('fuego');
-	const isLoading = useSelector(state => state.Superheroes.isLoading)
-	const isUpdating = useSelector(state => state.Superheroes.isUpdating)
-	const superhero = useSelector(state => state.Superheroes.byId[id])
-	const defaultPowers = useSelector(state => state.Chips.powers)
-	const defaultWeathers = useSelector(state => state.Chips.weathers)
+	const isLoading = useSelector(state => state.Superheroes.isLoading);
+	const isUpdating = useSelector(state => state.Superheroes.isUpdating);
+	const superhero = useSelector(state => state.Superheroes.byId[id]);
+	const defaultPowers = useSelector(state => state.Chips.powers);
+	const defaultWeathers = useSelector(state => state.Chips.weathers);
 
 	const options = [
 		{ label: 'Fuego', value: 'fuego', default: true },
@@ -80,7 +82,7 @@ export default function HeroesDetailRoute() {
 	return (
 		superhero ? (
 			<div className="full-container flex column justify-content-space-between">
-				<div className='flex row align-items-center big-padding-vertical justify-content-space-between'>
+				<div className='flex row align-items-center big-padding-top justify-content-space-between'>
 					<div className='flex row align-items-center'>
 						<div className='margin-right'>
 							<PillBtn 
@@ -104,8 +106,37 @@ export default function HeroesDetailRoute() {
 						/>
 					</div>
 				</div>
+				<div className='flex'>
+					<SimpleCard className='flex flex05 silhouette-container justify-content-center small-padding-vertical huge-margin-horizontal'>
+						<img
+							height='100%'
+							src={superhero.suits[0].thumbnail}
+						/>
+					</SimpleCard>
+					<div className='flex1 column'>
+						<p className='big-text no-margin-top small-margin-bottom'>Poderes</p>
+						<div className='flex'>
+							{
+								superhero.superpowers.map((item) =>
+									<div className='tag'>{item}</div>
+								)
+							}
+						</div>
+						<p className='big-text margin-top small-margin-bottom'>Clima</p>
+						<div className='flex'>
+							{
+								superhero.weather.map((item) =>
+									<div className='tag'>{item}</div>
+								)
+							}
+						</div>
+						<p className='big-text margin-top small-margin-bottom'>Elemento</p>
+						<div className='tag'>{superhero.element}</div>
+						
+					</div>
+				</div>
 				<PillBtn
-					className='align-self-flex-end big-margin-bottom'
+					className='align-self-flex-end margin-bottom'
 					text='NUEVO TRAJE'
 					onClick={() => history.push('/create-suit', { id: superhero._id })}
 				/>
