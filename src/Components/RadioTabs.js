@@ -35,7 +35,7 @@ RadioTabs.propTypes = {
 	name: PropTypes.string,
 	options: PropTypes.array,
 	onChange: PropTypes.func,
-	selected: PropTypes.string
+	selected: PropTypes.node
 }
 
 RadioTabs.defaultProps = {

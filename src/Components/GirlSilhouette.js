@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const GirlSilhouette = props => (
   <svg width='100%' height='100%' fill="none" viewBox='0 0 59.24 188.53'>
-    <g clipPath="url(#prefix__clip0)" fill="black">
+    <g clipPath="url(#prefix__clip0)" fill="#00000022">
       {/* head part*/}
         <path
           stroke='#ebebeb'

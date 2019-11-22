@@ -107,7 +107,7 @@ export default function HeroesDetailRoute() {
 				<PillBtn
 					className='align-self-flex-end big-margin-bottom'
 					text='NUEVO TRAJE'
-					onClick={() => history.push('/create-suit')}
+					onClick={() => history.push('/create-suit', { id: superhero._id })}
 				/>
 				<CustomModal
 					isOpen={isDeleteHero}

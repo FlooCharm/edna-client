@@ -3,7 +3,8 @@ import React, {
 	useReducer
 	// useEffect, 
 } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 import useFormInput from '../custom-hooks/useFormInput';
 import useFormValue from '../custom-hooks/useFormValue';
@@ -11,8 +12,13 @@ import CreateSuitStep1 from '../Components/CreateSuitStep1';
 import CreateSuitStep2 from '../Components/CreateSuitStep2';
 import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
-export default function CreateSuitRoute() { 
+import { createSuit } from '../actions/SuitsActions';
+import { fetchSuperhero } from '../actions/SuperheroesActions';
 
+import toUnderscore from '../utils/ToUnderscore.js';
+import stringToNumber from '../utils/StringToNumber.js';
+
+export default function CreateSuitRoute(props) { 
 	const initialState = {
 		measures: {
 			lengthLeftArm: '',
@@ -32,52 +38,54 @@ export default function CreateSuitRoute() {
 		},
 		colors: {
 			leftArm: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			rightArm: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			leftLeg: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			rightLeg: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			rightFoot: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			leftFoot: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			neck: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			belt: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			torso: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			underwear: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 			mask: {
-				color: '#000',
-				isActive: false
+				color: '#00000022',
+				is_active: false
 			},
 		}
 	};
+	const dispatch = useDispatch();
 	const history = useHistory();
+	const superhero = useLocation().state.id;
 	const [step, setStep] = useState(1);
 	const wearer = useFormValue(0);
 	const material = useFormValue(0);
@@ -100,7 +108,7 @@ export default function CreateSuitRoute() {
 					colors: {
 						...state.colors,
 						[action.prop]: {
-							isActive: true,
+							is_active: true,
 							color: action.payload
 						}
 					}
@@ -111,7 +119,7 @@ export default function CreateSuitRoute() {
 					colors: {
 						...state.colors,
 						[action.prop]: {
-							isActive: false,
+							is_active: false,
 							color: '#00000022'
 						}
 					}
@@ -151,9 +159,22 @@ export default function CreateSuitRoute() {
 	}
 
 	const changeStep = (value) => setStep(value);
-	// const onSubmit = () => {
-	// 	history.push('/');
-	// }
+	
+
+	const onSubmit = async () => {
+		let newSuit = {
+			bearer: superhero,
+			bearer_type: wearer.value,
+			fabric: material.value,
+			main_colors: colors,
+			measures: toUnderscore(stringToNumber(suit.measures)),
+			pieces: toUnderscore(suit.colors)
+
+		}
+		await dispatch(createSuit(newSuit));
+		await dispatch(fetchSuperhero(superhero))
+		history.push(`/superhero/${superhero}`);
+	}
 	
 	switch (step) {
 		case 1:
@@ -184,6 +205,7 @@ export default function CreateSuitRoute() {
 					onChangeSuitColor={onChangeSuitColor}
 					colors={colors}
 					changeStep={changeStep}
+					onSubmit={onSubmit}
 				/>	
 			);
 		default:

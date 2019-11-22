@@ -52,9 +52,7 @@ export default function CreateHeroStep2(props) {
 				className='align-self-flex-end margin-bottom'
 				text='CREAR TRAJE'
 				// disabled={!hasMinimumData}
-				onClick={() => {
-					props.changeStep(3)
-				}}
+				onClick={() => props.onSubmit()}
 			/>
 		</div>
 	);
