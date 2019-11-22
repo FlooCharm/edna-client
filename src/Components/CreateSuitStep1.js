@@ -13,16 +13,16 @@ export default function CreateHeroStep1(props) {
 	const history = useHistory();
 	const [selectedColor, setSelectedColor] = useState(0);
 	const wearerOpts = [
-		{ label: 'Mujer', value: 'mujer', default: true },
-		{ label: 'Hombre', value: 'hombre' },
-		{ label: 'Niña', value: 'niña' },
-		{ label: 'Niño', value: 'niño' },
-		{ label: 'Bebé', value: 'bebe' },
+		{ label: 'Mujer', value: 0, default: true },
+		{ label: 'Hombre', value: 1 },
+		{ label: 'Niña', value: 2 },
+		{ label: 'Niño', value: 3 },
+		{ label: 'Bebé', value: 4 },
 	];
 	const materialOpts = [
-		{ label: 'Fibras naturales', value: 'naturales', default: true },
-		{ label: 'Fibras artificiales', value: 'artificiales' },
-		{ label: 'Fibras sintéticas', value: 'sinteticas' },
+		{ label: 'Fibras naturales', value: 0, default: true },
+		{ label: 'Fibras artificiales', value: 1 },
+		{ label: 'Fibras sintéticas', value: 2 },
 	];
 
 	const addColor = () => {
@@ -96,7 +96,7 @@ export default function CreateHeroStep1(props) {
 				</div>
 				<PillBtn 
 					className='align-self-flex-end huge-padding-bottom'
-					disabled={!props.wearer.value}
+					disabled={!props.colors.length}
 					text='SIGUIENTE'
 					onClick={() => props.changeStep(2)}
 				/>
