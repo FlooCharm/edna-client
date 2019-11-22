@@ -3,6 +3,8 @@ import React, {
 	// useEffect, 
 } from 'react';
 
+import PropTypes from 'prop-types';
+
 import ManSilhouette from '../Components/ManSilhouette';
 import WomanSilhouette from '../Components/WomanSilhouette';
 import BoySilhouette from '../Components/BoySilhouette';
@@ -12,7 +14,12 @@ import BabySilhouette from '../Components/BabySilhouette';
 export default function HeroSuit(props) { 
 	switch (props.wearer) {
 		case 'mujer':
-			return <ManSilhouette />
+			return (
+				<ManSilhouette 
+					colors={props.colors}
+					onClick={props.onClick}
+				/>
+			);
 		case 'hombre':
 			return <WomanSilhouette />
 		case 'niño':
@@ -24,5 +31,14 @@ export default function HeroSuit(props) {
 		default:
 			return null;
 	}
+}
 
+HeroSuit.propTypes = {
+	colors: PropTypes.object,
+	onClick: PropTypes.func,
+}
+
+HeroSuit.defaultProps = {
+	colors: {},
+	onClick () {}
 }

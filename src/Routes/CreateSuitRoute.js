@@ -13,7 +13,7 @@ import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
 export default function CreateSuitRoute() { 
 
-	const initialState = {
+	const measuresInitialState = {
 		lengthLeftArm: '',
 		widthLeftArm: '',
 		lengthRightArm: '',
@@ -34,7 +34,7 @@ export default function CreateSuitRoute() {
 	const wearer = useFormValue('mujer');
 	const material = useFormValue('naturales');
 	const [colors, setColors] = useState(['#EF2626']);
-	const [measures, dispatchMeasures] = useReducer(reducer, initialState);
+	const [measures, dispatchMeasures] = useReducer(reducer, measuresInitialState);
 	
 	function reducer(state, action) {
 		switch (action.type) {

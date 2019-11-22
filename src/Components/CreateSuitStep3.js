@@ -26,6 +26,7 @@ export default function CreateHeroStep2(props) {
 			<div className='flex flex1 justify-content-space-around'>
 				<HeroSuit 
 					wearer='hombre'
+					
 				/>
 				<ColorSquares 
 					colors={props.colors}
