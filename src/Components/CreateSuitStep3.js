@@ -1,5 +1,6 @@
 import React, { 
 	useState, 
+	useRef
 	// useEffect, 
 } from 'react';
 import { useHistory } from "react-router-dom";
@@ -11,6 +12,7 @@ import HeroSuit from '../Components/HeroSuit';
 export default function CreateHeroStep2(props) { 
 	const history = useHistory();
 	const [selectedColor, setSelectedColor] = useState(0);
+	const suitRef = useRef()
 	
 	const onSelectColor = (value) => setSelectedColor(value);
 
@@ -32,7 +34,8 @@ export default function CreateHeroStep2(props) {
 			</div>
 			<div className='flex flex1 justify-content-center big-margin-top padding-horizontal'>
 				<div className='flex justify-content-center flex1 margin-horizontal grey-bg silhouette-container'>
-					<HeroSuit 
+					<HeroSuit
+						ref={suitRef}
 						wearer={props.wearer.value}
 						colors={props.suitColors}
 						onClick={onSuitColorChange}
@@ -52,7 +55,7 @@ export default function CreateHeroStep2(props) {
 				className='align-self-flex-end margin-bottom'
 				text='CREAR TRAJE'
 				// disabled={!hasMinimumData}
-				onClick={() => props.onSubmit()}
+				onClick={() => props.onSubmit(suitRef)}
 			/>
 		</div>
 	);

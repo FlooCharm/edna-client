@@ -6,6 +6,8 @@ import React, {
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
+import svgToDataURL from 'svg-to-dataurl'
+
 import useFormInput from '../custom-hooks/useFormInput';
 import useFormValue from '../custom-hooks/useFormValue';
 import CreateSuitStep1 from '../Components/CreateSuitStep1';
@@ -161,14 +163,15 @@ export default function CreateSuitRoute(props) {
 	const changeStep = (value) => setStep(value);
 	
 
-	const onSubmit = async () => {
+	const onSubmit = async (suitRef) => {
 		let newSuit = {
 			bearer: superhero,
 			bearer_type: wearer.value,
 			fabric: material.value,
 			main_colors: colors,
 			measures: toUnderscore(stringToNumber(suit.measures)),
-			pieces: toUnderscore(suit.colors)
+			pieces: toUnderscore(suit.colors),
+			thumbnail: svgToDataURL(suitRef.current.innerHTML)
 
 		}
 		await dispatch(createSuit(newSuit));
