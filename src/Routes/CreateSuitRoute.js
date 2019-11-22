@@ -78,7 +78,7 @@ export default function CreateSuitRoute() {
 		}
 	};
 	const history = useHistory();
-	const [step, setStep] = useState(3);
+	const [step, setStep] = useState(1);
 	const wearer = useFormValue(0);
 	const material = useFormValue(0);
 	const [colors, setColors] = useState(['#EF2626']);
