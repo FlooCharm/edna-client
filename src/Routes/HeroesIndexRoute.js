@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
 import PillBtn from '../Components/PillBtn';
+import HorizontalMenu from '../Components/HorizontalMenu';
 
 import { fetchSuperheroes } from '../actions/SuperheroesActions';
 
@@ -15,11 +16,27 @@ export default function HeroesIndexRoute() {
 	const [filterText, setFilterText] = useState('');
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const superheroes = useSelector(state => state.Superheroes.allIds.map(id => state.Superheroes.byId[id]))
+	const superheroes = useSelector(state => state.Superheroes.allIds.map(id => state.Superheroes.byId[id]));
 
 	useEffect(() => {
 		dispatch(fetchSuperheroes())
-	}, [])
+	}, []);
+
+	const renderHeroCards = () => {
+		return superheroes.map(superhero => 
+			<SimpleCard
+				className='clickable'
+				key={superhero.super_name}
+			>
+				<div 
+					className='padded hero-card'
+					onClick={() => history.push(`/superhero/${superhero._id}`)}
+				>
+					<p className='no-margin big-text text-center'>{superhero.super_name}</p>
+				</div>
+			</SimpleCard>
+		);
+	}
 
 	return (
 		<div className="container flex column align-items-center justify-content-space-around">
@@ -33,17 +50,12 @@ export default function HeroesIndexRoute() {
 					onChange={(e) => setFilterText(e.target.value)}
 				/>	
 			</div>
-			{
-				superheroes.map(superhero => 
-					<SimpleCard
-						className='padded hero-card clickable'
-						onClick={() => history.push(`/superhero/${superhero._id}`)}
-						key={superhero.super_name}
-					>
-						<p className='no-margin big-text text-center'>{superhero.super_name}</p>
-					</SimpleCard>
-				)
-			}
+			<div className='horizontal-menu-container'>
+				<HorizontalMenu
+					renderData={() => renderHeroCards()}
+					update={superheroes}
+				/>
+			</div>
 			<div className='flex column align-items-flex-end full-width'>
 				<PillBtn
 					className=''

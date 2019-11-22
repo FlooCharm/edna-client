@@ -93,8 +93,10 @@ body { font-family: 'Abel', sans-serif; }
 
 /* colors */
 .white-text { color: white; }
+.red-text { color: #EF2626; }
 
 .black-bg { background: #000; }
+.red-bg { background: #EF2626; }
 .grey-bg { background: #C4C4C4; }
 .transparent-bg { background: transparent !important; }
 
@@ -159,7 +161,7 @@ body { font-family: 'Abel', sans-serif; }
 	width: fit-content;
 }
 .hero-card { 
-	max-width: 200px; 
+	min-width: 150px; 
 	min-height: 180px;
 	display: flex;
 	align-items: center;
@@ -329,4 +331,14 @@ body { font-family: 'Abel', sans-serif; }
 /* Silhouettes */
 .silhouette-container {
 	max-height: 72vh;
+}
+
+/* horizontalMenu */
+.horizontal-menu-container {
+	width: calc(100vw - 240px - 6em);
+	padding-right: 2em;
+}
+.menu-item-wrapper {
+	outline: none;
+	padding: 1em 3em;
 }

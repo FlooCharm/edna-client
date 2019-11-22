@@ -14,9 +14,10 @@ export default function GalleryRoute() {
 	}, [])
 
 	return (
-		<div className="container">
-			<h1 className='no-margin'>GalleryRoute</h1>
-			
+		<div className="container flex column align-items-center">
+			<div className='flex column full-width align-items-center'>
+				<p className='huge-text'>GALERÍA</p>	
+			</div>
 		</div>
 	)	
 }
