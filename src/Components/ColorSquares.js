@@ -3,7 +3,7 @@ import React, {
 	// useEffect, 
 } from 'react';
 import PropTypes from 'prop-types';
-import { Plus, X } from 'react-feather';
+import { Plus, X, Check } from 'react-feather';
 
 export default function ColorSquares (props) {
 	
@@ -14,12 +14,18 @@ export default function ColorSquares (props) {
 			style={{ background: color }}
 			onClick={() => props.onSelect(index)}
 		>	
-			{props.selected === index && (
+			{props.selected === index && !props.disableEdit && (
 				<X 
 					color='#ccc' 
 					size={30}
 					onClick={(e) => props.onDelete(e, index)}
 				/>
+			)}
+			{props.disableEdit && (
+				<Check 
+					color='#ccc' 
+					size={30}
+				/>	
 			)}
 		</div>	
 	);
@@ -27,12 +33,14 @@ export default function ColorSquares (props) {
 	return (
 		<div className='flex'>
 			{squares}
-			<div
-				className='color-square add-color-square clickable centered'
-				onClick={props.onAdd}
-			>	
-				<Plus size={30}/>
-			</div>
+			{(!props.disableEdit) && props.colors.length < 4 && (
+				<div
+					className='color-square add-color-square clickable centered'
+					onClick={props.onAdd}
+				>	
+					<Plus size={30}/>
+				</div>
+			)}
 		</div>
 	)
 }
@@ -42,7 +50,8 @@ ColorSquares.propTypes = {
 	onSelect: PropTypes.func,
 	onAdd: PropTypes.func,
 	onDelete: PropTypes.func,
-	selected: PropTypes.number
+	selected: PropTypes.number,
+	disableEdit: PropTypes.bool
 }
 
 ColorSquares.defaultProps = {
@@ -50,5 +59,6 @@ ColorSquares.defaultProps = {
 	onSelect: () => {},
 	onAdd: () => {},
 	onDelete: () => {},
-	selected: 0
+	selected: 0,
+	disableEdit: false
 }

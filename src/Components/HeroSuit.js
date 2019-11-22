@@ -13,35 +13,35 @@ import BabySilhouette from '../Components/BabySilhouette';
 
 export default function HeroSuit(props) { 
 	switch (props.wearer) {
-		case 'hombre':
-			return (
-				<ManSilhouette 
-					colors={props.colors}
-					onClick={props.onClick}
-				/>
-			);
-		case 'mujer':
+		case 0:
 			return (
 				<WomanSilhouette 
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
-		case 'niño':
+		case 1:
 			return (
-				<BoySilhouette 
+				<ManSilhouette 
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
-		case 'niña':
+		case 2:
 			return (
 				<GirlSilhouette 
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
-		case 'bebe':
+		case 3:
+			return (
+				<BoySilhouette 
+					colors={props.colors}
+					onClick={props.onClick}
+				/>
+			);
+		case 4:
 			return (
 				<BabySilhouette 
 					colors={props.colors}

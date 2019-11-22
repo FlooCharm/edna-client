@@ -50,9 +50,12 @@ body { font-family: 'Abel', sans-serif; }
 	margin-top: 0; 
 	margin-bottom: 0;
 }
+.no-margin-top { margin-top: 0; }
 .reversed-margin-top { margin-top: -1em; }
 
 .small-margin-vertical { margin: 1em 0; }
+.margin-horizontal { margin: 0 2em; }
+
 .small-margin-left { margin-left: 0.5em; }
 .small-margin-right { margin-right: 0.5em; }
 .small-margin-bottom { margin-bottom: 0.5em; }
@@ -60,6 +63,7 @@ body { font-family: 'Abel', sans-serif; }
 .margin-left { margin-left: 1em; }
 .margin-bottom { margin-bottom: 1em; }
 .big-margin-bottom { margin-bottom: 2em; }
+.big-margin-top { margin-top: 2em; }
 .big-margin-right { margin-right: 2em; }
 .big-margin-left { margin-left: 2em; }
 .huge-margin-right { margin-right: 4em; }
@@ -311,4 +315,9 @@ body { font-family: 'Abel', sans-serif; }
 	left: 0;
 	right: 0;
 	bottom: 0;
+}
+
+/* Silhouettes */
+.silhouette-container {
+	max-height: 72vh;
 }
