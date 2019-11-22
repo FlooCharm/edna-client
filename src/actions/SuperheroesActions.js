@@ -20,6 +20,20 @@ export function fetchSuperheroes () {
 	}
 }
 
+export function fetchSuperhero (id) {
+	return async (dispatch) => {
+		await dispatch(getSuperheroesBegin())
+		try {
+			let result = await ApiService.getSuperhero(id);
+			let normalized = normalizeById([result.superhero])
+			dispatch(getSuperheroesSuccess(normalized))
+		}
+		catch(e) {
+			dispatch(getSuperheroesFailure(e))
+		}
+	}
+}
+
 export function createSuperhero (data) {
 	return async (dispatch, getState) => {
 		try {

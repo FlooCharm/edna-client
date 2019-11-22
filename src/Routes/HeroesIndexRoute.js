@@ -2,7 +2,7 @@ import React, {
 	useState, 
 	useEffect, 
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useHistory } from "react-router-dom";
 import TextInput from '../Components/TextInput';
@@ -15,6 +15,7 @@ export default function HeroesIndexRoute() {
 	const [filterText, setFilterText] = useState('');
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const superheroes = useSelector(state => state.Superheroes.allIds.map(id => state.Superheroes.byId[id]))
 
 	useEffect(() => {
 		dispatch(fetchSuperheroes())
@@ -32,12 +33,17 @@ export default function HeroesIndexRoute() {
 					onChange={(e) => setFilterText(e.target.value)}
 				/>	
 			</div>
-			<SimpleCard
-				className='padded hero-card clickable'
-				onClick={() => history.push('/detail')}
-			>
-				<p className='no-margin big-text text-center'>SOME HERO NAME</p>
-			</SimpleCard>
+			{
+				superheroes.map(superhero => 
+					<SimpleCard
+						className='padded hero-card clickable'
+						onClick={() => history.push(`/${superhero._id}`)}
+						key={superhero.super_name}
+					>
+						<p className='no-margin big-text text-center'>{superhero.super_name}</p>
+					</SimpleCard>
+				)
+			}
 			<div className='flex column align-items-flex-end full-width'>
 				<PillBtn
 					className=''
