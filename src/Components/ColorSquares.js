@@ -21,7 +21,7 @@ export default function ColorSquares (props) {
 					onClick={(e) => props.onDelete(e, index)}
 				/>
 			)}
-			{props.disableEdit && (
+			{props.selected === index && props.disableEdit && (
 				<Check 
 					color='#ccc' 
 					size={30}

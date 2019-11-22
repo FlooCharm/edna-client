@@ -37,8 +37,8 @@ export function fetchSuitsbySuperhero (id) {
 export function createSuit (data) {
 	return async (dispatch, getState) => {
 		try {
-			let stateAllIds = getState().Superheroes.allIds;
-			let stateById = getState().Superheroes.byId;
+			let stateAllIds = getState().Suits.allIds;
+			let stateById = getState().Suits.byId;
 			let result = await ApiService.createSuit(data);
 			let normalized = normalizeById([result.suit])
 			let byId = { ...stateById, ...normalized.byId }
