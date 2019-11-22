@@ -5,6 +5,7 @@ import React, {
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import useFormInput from '../custom-hooks/useFormInput';
+import useFormValue from '../custom-hooks/useFormValue';
 
 import { Link } from "react-router-dom";
 import PillBtn from '../Components/PillBtn';
@@ -14,7 +15,8 @@ import TextInput from '../Components/TextInput';
 import ChipsInput from '../Components/ChipsInput';
 import RadioTabs from '../Components/RadioTabs';
 
-import { fetchSuperhero } from '../actions/SuperheroesActions';
+import { fetchSuperhero, updateSuperhero } from '../actions/SuperheroesActions';
+import { setChips } from '../actions/ChipsActions';
 
 export default function HeroesDetailRoute() { 
 	const dispatch = useDispatch();
@@ -23,13 +25,50 @@ export default function HeroesDetailRoute() {
 	const [isEditOpen, setEditOpen] = useState(false);
 	const [isDeleteHero, setDeleteHero] = useState(false);
 	const name = useFormInput('');
+	const powers = useFormValue([]);
+	const weather = useFormValue([]);
+	const element = useFormValue('fuego');
+	const isUpdating = useSelector(state => state.Superheroes.isUpdating)
 	const superhero = useSelector(state => state.Superheroes.byId[id])
+	const defaultPowers = useSelector(state => state.Chips.powers)
+	const defaultWeathers = useSelector(state => state.Chips.weathers)
+
+	const options = [
+		{ label: 'Fuego', value: 'fuego', default: true },
+		{ label: 'Agua', value: 'agua' },
+		{ label: 'Tierra', value: 'tierra' },
+		{ label: 'Aire', value: 'aire' }
+	]
 
 	useEffect(() => {
 		if(!superhero) {
 			dispatch(fetchSuperhero(id))
+		} else if (superhero && !isEditOpen){
+			name.onChange({target:{value:superhero.super_name}})
+			powers.onChange(superhero.superpowers)
+			weather.onChange(superhero.weather)
+			element.onChange(superhero.element)
 		}
-	}, [superhero])
+	}, [superhero, isEditOpen])
+
+	const update = async () => {
+		let newData = {
+			super_name: name.value,
+			weather: weather.value,
+			superpowers: powers.value,
+			element: element.value
+		}
+		let result = await dispatch(updateSuperhero(superhero._id, newData))
+		if(result) saveChips()
+		setEditOpen(false)
+	}
+
+	const saveChips = async () => {
+		let newPowers = powers.value.filter(power => !defaultPowers.includes(power))
+		let newWeathers = weather.value.filter(weather => !defaultWeathers.includes(weather))
+		if(newPowers.length) await dispatch(setChips('powers', newPowers))
+		if(newWeathers.length) await dispatch(setChips('weathers', newWeathers))
+	}
 
 	return (
 		superhero ? (
@@ -109,6 +148,8 @@ export default function HeroesDetailRoute() {
 									className='flex1'
 									placeholder='Poderes' 
 									blackBg={false}
+									suggestions={defaultPowers}
+									{...powers}
 								/>
 							</div>
 							<div className='flex align-items-center padding-horizontal'>
@@ -117,19 +158,25 @@ export default function HeroesDetailRoute() {
 									className='flex1'
 									placeholder='Clima'
 									blackBg={false}
+									suggestions={defaultWeathers}
+									{...weather}
 								/>
 							</div>
 							<div className='flex align-items-center padding-horizontal margin-bottom'>
 								<p className='big-text no-margin-vertical small-margin-right flex02'>Elemento</p>
 								<RadioTabs 
+									name='elements'
 									className='white-bg flex1'
+									options={options}
+									selected={element.value}
+									onChange={element.onChange}
 								/>
 							</div>
 						</div>
 						<PillBtn
 							className='align-self-flex-end margin-bottom'
-							text='Confirmar'
-							onClick={() => setEditOpen(false)}
+							text={isUpdating ? 'Guardando...' : 'Confirmar'}
+							onClick={() => update()}
 						/>
 					</div>
 				</CustomModal>

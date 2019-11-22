@@ -1,13 +1,17 @@
 import {
 	GET_SUPERHEROES_BEGIN,
 	GET_SUPERHEROES_SUCCESS,
-	GET_SUPERHEROES_FAILURE
+	GET_SUPERHEROES_FAILURE,
+	UPDATE_SUPERHEROES_BEGIN,
+	UPDATE_SUPERHEROES_SUCCESS,
+	UPDATE_SUPERHEROES_FAILURE
 } from '../actions/SuperheroesActions.js';
 
 const initialState = {
 	allIds: [],
 	byId: {},
 	isLoading: false,
+	isUpdating: false,
 	error: ''
 }
 
@@ -31,6 +35,25 @@ export default function SuperheroesReducer(state = initialState, action) {
 			return {
 				...state,
 				isLoading: false,
+				error: action.payload.error
+			}
+		case UPDATE_SUPERHEROES_BEGIN: 
+			return {
+				...state,
+				isUpdating: true,
+				error: ''
+			}
+		case UPDATE_SUPERHEROES_SUCCESS:
+			return {
+				...state,
+				byId: action.payload.byId,
+				isUpdating: false,
+				error: ''
+			}
+		case UPDATE_SUPERHEROES_FAILURE:
+			return {
+				...state,
+				isUpdating: false,
 				error: action.payload.error
 			}
 		default:

@@ -22,7 +22,7 @@ export default function CreateHeroRoute() {
 	const name = useFormInput('');
 	const powers = useFormValue([]);
 	const weather = useFormValue([]);
-	const element = useFormValue('');
+	const element = useFormValue('fuego');
 	const [step, setStep] = useState(1);
 
 	const changeStep = (value) => setStep(value);
@@ -34,7 +34,7 @@ export default function CreateHeroRoute() {
 			element: element.value
 		}
 		let result = await dispatch(createSuperhero(newSuperhero))
-		saveChips()
+		if(result) saveChips()
 		history.push(`/superhero/${result._id}`);
 	}
 
