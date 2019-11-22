@@ -1,15 +1,15 @@
 export const SET_POWERS = 'SET_POWERS';
 export const SET_WEATHERS = 'SET_WEATHERS';
 
-export function setChips (type, value) {
+export function setChips (type, newValues) {
 	return async (dispatch, getState) => {
 		if(type === 'powers'){
 			let powers = getState().Chips.powers.slice();
-			powers.push(value);
+			powers.push(...newValues);
 			dispatch(setPowers(powers))
 		} else {
 			let weathers = getState().Chips.weathers.slice();
-			weathers.push(value);
+			weathers.push(...newValues);
 			dispatch(setWeathers(weathers))
 		}
 	}

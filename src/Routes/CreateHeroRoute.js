@@ -2,7 +2,7 @@ import React, {
 	useState, 
 	// useEffect, 
 } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
 import useFormInput from '../custom-hooks/useFormInput';
@@ -11,8 +11,11 @@ import CreateHeroStep1 from '../Components/CreateHeroStep1';
 import CreateHeroStep2 from '../Components/CreateHeroStep2';
 
 import { createSuperhero } from '../actions/SuperheroesActions';
+import { setChips } from '../actions/ChipsActions';
 
-export default function CreateHeroRoute() { 
+export default function CreateHeroRoute() {
+	const defaultPowers = useSelector(state => state.Chips.powers)
+	const defaultWeathers = useSelector(state => state.Chips.weathers)
 	const dispatch = useDispatch();
 
 	const history = useHistory();
@@ -30,8 +33,16 @@ export default function CreateHeroRoute() {
 			superpowers: powers.value,
 			element: element.value
 		}
-		await dispatch(createSuperhero(newSuperhero))
-		history.push('/');
+		let result = await dispatch(createSuperhero(newSuperhero))
+		saveChips()
+		history.push(`/${result._id}`);
+	}
+
+	const saveChips = async () => {
+		let newPowers = powers.value.filter(power => !defaultPowers.includes(power))
+		let newWeathers = weather.value.filter(weather => !defaultWeathers.includes(weather))
+		if(newPowers.length) await dispatch(setChips('powers', newPowers))
+		if(newWeathers.length) await dispatch(setChips('weathers', newWeathers))
 	}
 	
 	switch (step) {
@@ -41,6 +52,7 @@ export default function CreateHeroRoute() {
 					name={name}
 					powers={powers}
 					changeStep={changeStep}
+					suggestions={defaultPowers}
 				/>
 			);
 		case 2: 
@@ -50,6 +62,7 @@ export default function CreateHeroRoute() {
 					element={element}
 					changeStep={changeStep}
 					onSubmit={onSubmit}
+					suggestions={defaultWeathers}
 				/>	
 			);
 		default:

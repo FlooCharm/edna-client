@@ -27,7 +27,7 @@ export default function ChipsInput (props) {
 				chipTheme={chipTheme}
 				placeholder={props.placeholder}
 				onChange={props.onChange}
-				suggestions={['some', 'chips', 'stored', 'in', 'redux T_T']}
+				suggestions={props.suggestions}
 				alwaysRenderSuggestions
 				uniqueChips
 				createChipKeys={['Enter']}
@@ -42,7 +42,8 @@ ChipsInput.propTypes = {
 	onChange: PropTypes.func,
 	blackBg: PropTypes.bool,
 	className: PropTypes.string,
-	containerClassName: PropTypes.string
+	containerClassName: PropTypes.string,
+	suggestions: PropTypes.array
 }
 
 ChipsInput.defaultProps = {
@@ -52,4 +53,5 @@ ChipsInput.defaultProps = {
 	blackBg: true,
 	className: '',
 	containerClassName: '',
+	suggestions: []
 }

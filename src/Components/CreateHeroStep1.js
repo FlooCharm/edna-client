@@ -32,6 +32,7 @@ export default function CreateHeroStep1(props) {
 				<ChipsInput
 					containerClassName='width60'
 					placeholder='Poderes'
+					suggestions={props.suggestions}
 					{...props.powers}
 				/>
 			</div>

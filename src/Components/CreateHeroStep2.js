@@ -33,6 +33,7 @@ export default function CreateHeroStep2(props) {
 					<ChipsInput
 						containerClassName='width60'
 						placeholder='Clima'
+						suggestions={props.suggestions}
 						{...props.weather}
 					/>
 				</div>

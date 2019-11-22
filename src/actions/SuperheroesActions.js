@@ -30,6 +30,7 @@ export function createSuperhero (data) {
 			let byId = { ...stateById, ...normalized.byId }
 			let allIds = [ ...stateAllIds, ...normalized.allIds ]
 			dispatch(getSuperheroesSuccess({ byId, allIds }))
+			return result.superhero;
 		} catch (e) {
 			dispatch(getSuperheroesFailure(e))
 		}

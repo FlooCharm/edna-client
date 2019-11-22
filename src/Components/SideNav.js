@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { matchPath } from "react-router";
 
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { List, Grid, LogOut } from 'react-feather';
@@ -13,9 +14,15 @@ export default function SideBar ({ location, history }) {
         dispatch(clearSession());
     }
 
+    const match = matchPath(location.pathname, {
+        path: "/:id",
+        exact: true,
+        strict: false
+    });
+
     return (
 		(location.pathname !== '/login') &&
-        (location.pathname !== '/detail') &&
+        (!match) &&
 		(location.pathname !== '/create-hero') &&
 		(location.pathname !== '/create-suit') &&
         (

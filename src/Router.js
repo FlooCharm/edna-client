@@ -26,23 +26,6 @@ export default function Routes () {
 
 				{/* A <Switch> looks through its children <Route>s and
 						renders the first one that matches the current URL. */}
-				<Switch>
-					<Route path="/signup">
-						<SignUpRoute />
-					</Route>
-					<Route path="/login">
-						<LoginRoute />
-					</Route>
-					<PrivateRoute path="/detail">
-						<HeroesDetailRoute />
-					</PrivateRoute>
-					<PrivateRoute path="/create-hero">
-						<CreateHeroRoute />
-					</PrivateRoute>
-					<PrivateRoute path="/create-suit">
-						<CreateSuitRoute />
-					</PrivateRoute>
-				</Switch>
 				<Route 
 					render={({ location, history }) => (
 						<React.Fragment>
@@ -61,6 +44,23 @@ export default function Routes () {
 				        </React.Fragment>
 			  	  	)}
 			    />
+				<Switch>
+					<Route path="/signup">
+						<SignUpRoute />
+					</Route>
+					<Route path="/login">
+						<LoginRoute />
+					</Route>
+					<PrivateRoute exact path="/create-hero">
+						<CreateHeroRoute />
+					</PrivateRoute>
+					<PrivateRoute path="/create-suit">
+						<CreateSuitRoute />
+					</PrivateRoute>
+					<PrivateRoute exact path="/:id">
+						<HeroesDetailRoute />
+					</PrivateRoute>
+				</Switch>
 
 		</Router>
 	);

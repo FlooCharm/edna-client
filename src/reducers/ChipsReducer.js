@@ -4,8 +4,12 @@ import {
 } from '../actions/ChipsActions.js';
 
 const initialState = {
-	powers: [],
-	weathers: []
+	powers: [
+		'fuerza', 'volar', 'velocidad', 'telequinesis', 'invisibilidad'
+	],
+	weathers: [
+		'lluvioso', 'soleado', 'frío', 'nublado'
+	]
 }
 
 export default function ChipsReducer(state = initialState, action) {
