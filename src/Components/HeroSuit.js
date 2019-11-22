@@ -11,39 +11,44 @@ import BoySilhouette from '../Components/BoySilhouette';
 import GirlSilhouette from '../Components/GirlSilhouette';
 import BabySilhouette from '../Components/BabySilhouette';
 
-export default function HeroSuit(props) { 
+const HeroSuit = React.forwardRef((props, ref) => {
 	switch (props.wearer) {
 		case 0:
 			return (
-				<WomanSilhouette 
+				<WomanSilhouette
+					ref={ref}
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
 		case 1:
 			return (
-				<ManSilhouette 
+				<ManSilhouette
+					ref={ref}
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
 		case 2:
 			return (
-				<GirlSilhouette 
+				<GirlSilhouette
+					ref={ref}
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
 		case 3:
 			return (
-				<BoySilhouette 
+				<BoySilhouette
+					ref={ref}
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
 			);
 		case 4:
 			return (
-				<BabySilhouette 
+				<BabySilhouette
+					ref={ref}
 					colors={props.colors}
 					onClick={props.onClick}
 				/>
@@ -51,7 +56,9 @@ export default function HeroSuit(props) {
 		default:
 			return null;
 	}
-}
+})
+
+export default HeroSuit;
 
 HeroSuit.propTypes = {
 	colors: PropTypes.object,
