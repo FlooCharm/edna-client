@@ -57,7 +57,7 @@ export default function Routes () {
 					<PrivateRoute path="/create-suit">
 						<CreateSuitRoute />
 					</PrivateRoute>
-					<PrivateRoute exact path="/:id">
+					<PrivateRoute exact path="/superhero/:id">
 						<HeroesDetailRoute />
 					</PrivateRoute>
 				</Switch>

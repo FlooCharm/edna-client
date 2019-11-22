@@ -15,7 +15,7 @@ export default function SideBar ({ location, history }) {
     }
 
     const match = matchPath(location.pathname, {
-        path: "/:id",
+        path: "/superhero/:id",
         exact: true,
         strict: false
     });

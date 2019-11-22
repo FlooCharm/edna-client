@@ -35,7 +35,7 @@ export default function CreateHeroRoute() {
 		}
 		let result = await dispatch(createSuperhero(newSuperhero))
 		saveChips()
-		history.push(`/${result._id}`);
+		history.push(`/superhero/${result._id}`);
 	}
 
 	const saveChips = async () => {

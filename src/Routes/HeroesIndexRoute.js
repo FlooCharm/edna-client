@@ -37,7 +37,7 @@ export default function HeroesIndexRoute() {
 				superheroes.map(superhero => 
 					<SimpleCard
 						className='padded hero-card clickable'
-						onClick={() => history.push(`/${superhero._id}`)}
+						onClick={() => history.push(`/superhero/${superhero._id}`)}
 						key={superhero.super_name}
 					>
 						<p className='no-margin big-text text-center'>{superhero.super_name}</p>

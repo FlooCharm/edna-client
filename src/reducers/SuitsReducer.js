@@ -1,8 +1,8 @@
 import {
-	GET_SUPERHEROES_BEGIN,
-	GET_SUPERHEROES_SUCCESS,
-	GET_SUPERHEROES_FAILURE
-} from '../actions/SuperheroesActions.js';
+	GET_SUITS_BEGIN,
+	GET_SUITS_SUCCESS,
+	GET_SUITS_FAILURE
+} from '../actions/SuitsActions.js';
 
 const initialState = {
 	allIds: [],
@@ -11,15 +11,15 @@ const initialState = {
 	error: ''
 }
 
-export default function SuperheroesReducer(state = initialState, action) {
+export default function SuitsReducer(state = initialState, action) {
 	switch (action.type) {
-		case GET_SUPERHEROES_BEGIN: 
+		case GET_SUITS_BEGIN: 
 			return {
 				...state,
 				isLoading: true,
 				error: ''
 			}
-		case GET_SUPERHEROES_SUCCESS:
+		case GET_SUITS_SUCCESS:
 			return {
 				...state,
 				allIds: action.payload.allIds,
@@ -27,7 +27,7 @@ export default function SuperheroesReducer(state = initialState, action) {
 				isLoading: false,
 				error: ''
 			}
-		case GET_SUPERHEROES_FAILURE:
+		case GET_SUITS_FAILURE:
 			return {
 				...state,
 				isLoading: false,
