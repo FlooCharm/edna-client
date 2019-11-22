@@ -24,16 +24,20 @@ export default function CreateHeroStep2(props) {
 				<p className='huge-text white-text no-margin'>Traje (selección de colores)</p>
 			</div>
 			<div className='flex flex1 justify-content-space-around'>
-				<HeroSuit 
-					wearer='hombre'
-					
-				/>
-				<ColorSquares 
-					colors={props.colors}
-				/>
+				<div className='flex justify-content-center flex05 grey-bg'>
+					<HeroSuit 
+						wearer='hombre'
+						colors={props.suitColors}
+					/>
+				</div>
+				<div className='flex1'>
+					<ColorSquares 
+						colors={props.colors}
+					/>
+				</div>
 			</div>
 			<PillBtn 
-				className='align-self-flex-end huge-margin-bottom'
+				className='align-self-flex-end margin-bottom'
 				text='CREAR TRAJE'
 				// disabled={!hasMinimumData}
 				onClick={() => {

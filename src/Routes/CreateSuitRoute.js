@@ -13,28 +13,41 @@ import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
 export default function CreateSuitRoute() { 
 
-	const measuresInitialState = {
-		lengthLeftArm: '',
-		widthLeftArm: '',
-		lengthRightArm: '',
-		widthRightArm: '',
-		lengthLeftLeg: '',
-		widthLeftLeg: '',
-		lengthRightLeg: '',
-		widthRightLeg: '',
-		neck: '',
-		chest: '',
-		waist: '',
-		hips: '',
-		torso: '',
-		head: '',
+	const initialState = {
+		measures: {
+			lengthLeftArm: '',
+			widthLeftArm: '',
+			lengthRightArm: '',
+			widthRightArm: '',
+			lengthLeftLeg: '',
+			widthLeftLeg: '',
+			lengthRightLeg: '',
+			widthRightLeg: '',
+			neck: '',
+			chest: '',
+			waist: '',
+			hips: '',
+			torso: '',
+			head: '',
+		},
+		colors: {
+			leftArm: '#000',
+			rightArm: '#000',
+			leftLeg: '#000',
+			rightLeg: '#000',
+			neck: '#000',
+			belt: '#000',
+			torso: '#000',
+			underwear: '#000',
+			mask: '#000',
+		}
 	};
 	const history = useHistory();
 	const [step, setStep] = useState(3);
 	const wearer = useFormValue('mujer');
 	const material = useFormValue('naturales');
 	const [colors, setColors] = useState(['#EF2626']);
-	const [measures, dispatchMeasures] = useReducer(reducer, measuresInitialState);
+	const [suit, dispatchSuit] = useReducer(reducer, initialState);
 	
 	function reducer(state, action) {
 		switch (action.type) {
@@ -49,7 +62,7 @@ export default function CreateSuitRoute() {
 	}
 
 	const onChangeText = ({ value }, prop) => {
-		dispatchMeasures({ type: 'SET_STATE', payload: value, prop});
+		dispatchSuit({ type: 'SET_STATE', payload: value, prop});
 	}
 
 	const changeColors = (value, index) => {
@@ -92,13 +105,14 @@ export default function CreateSuitRoute() {
 			return (
 				<CreateSuitStep2
 					onChangeText={onChangeText}
-					measures={measures}
+					measures={suit.measures}
 					changeStep={changeStep}
 				/>	
 			);
 		case 3: 
 			return (
 				<CreateSuitStep3
+					suitColors={suit.colors}
 					colors={colors}
 					changeStep={changeStep}
 				/>	

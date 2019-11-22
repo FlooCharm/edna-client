@@ -91,6 +91,7 @@ body { font-family: 'Abel', sans-serif; }
 .white-text { color: white; }
 
 .black-bg { background: #000; }
+.grey-bg { background: #C4C4C4; }
 .transparent-bg { background: transparent !important; }
 
 /* Texts */

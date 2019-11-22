@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 
 const ManSilhouette = props => (
-  <svg fill="none" viewBox='0 0 112.88 276.92'>
+  <svg width='480px' height='480px' fill="none" viewBox='0 0 112.88 276.92'>
     <g clipPath="url(#prefix__clip0)" fill="black">
       {/* head part*/}
         <path
