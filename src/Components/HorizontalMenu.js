@@ -13,7 +13,7 @@ export default function HorizontalMenu(props) {
 	useEffect(() => {
 		const newData = props.renderData();
 		setData(newData);
-	}, [props.update.length]);
+	}, props.update);
 
 	const Arrow = (isLeft) => {
 		if (isLeft)
