@@ -482,4 +482,6 @@ body { font-family: 'Abel', sans-serif; }
 		justify-content: flex-end;
 	}
 	.bubble-text { width: 70%; }
+	.big-padding-horizontal { padding: 0 2em; }
+	.width60, .width60-padded{ width: auto; }
 }
