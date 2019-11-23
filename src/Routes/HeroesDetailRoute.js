@@ -286,20 +286,19 @@ export default function HeroesDetailRoute() {
 				<CustomModal
 					isOpen={isEditHeroOpen}
 					onRequestClose={() => setEditHeroOpen(false)}
-					contentLabel="Example Modal"
 				>
-					<div className='flex column full-height align-items-center justify-content-space-around'>
+					<div className='flex column full-height align-items-center justify-content-space-around overflow-auto'>
 						<p className='huge-text no-margin'>EDITAR</p>
 						<div className='flex column full-width'>
-							<div className='flex align-items-center padding-horizontal margin-bottom'>
+							<div className='flex column-on-mobile align-items-center align-items-flex-start-on-mobile small-padding-horizontal-on-mobile padding-horizontal margin-bottom'>
 								<p className='big-text no-margin-vertical small-margin-right flex02'>Nombre</p>
 								<TextInput
-									className='flex1 small-margin-left'
+									className='flex1 small-margin-left no-margin-on-mobile width85'
 									placeholder='Nombre'
 									{...name}
 								/>
 							</div>
-							<div className='flex align-items-center padding-horizontal margin-bottom'>
+							<div className='flex column-on-mobile align-items-center align-items-flex-start-on-mobile small-padding-horizontal-on-mobile padding-horizontal margin-bottom'>
 								<p className='big-text no-margin-vertical small-margin-right flex02'>Poderes</p>
 								<ChipsInput
 									className='flex1'
@@ -309,7 +308,7 @@ export default function HeroesDetailRoute() {
 									{...powers}
 								/>
 							</div>
-							<div className='flex align-items-center padding-horizontal'>
+							<div className='flex column-on-mobile align-items-center align-items-flex-start-on-mobile small-padding-horizontal-on-mobile padding-horizontal margin-bottom'>
 								<p className='big-text no-margin-vertical small-margin-right flex02'>Clima</p>
 								<ChipsInput
 									className='flex1'
@@ -319,7 +318,7 @@ export default function HeroesDetailRoute() {
 									{...weather}
 								/>
 							</div>
-							<div className='flex align-items-center padding-horizontal margin-bottom'>
+							<div className='flex column-on-mobile align-items-center align-items-flex-start-on-mobile small-padding-horizontal-on-mobile padding-horizontal margin-bottom'>
 								<p className='big-text no-margin-vertical small-margin-right flex02'>Elemento</p>
 								<RadioTabs 
 									name='elements'
@@ -330,11 +329,20 @@ export default function HeroesDetailRoute() {
 								/>
 							</div>
 						</div>
-						<PillBtn
-							className='align-self-flex-end margin-bottom'
-							text={isUpdating ? 'Guardando...' : 'Confirmar'}
-							onClick={() => updateSup()}
-						/>
+						<div className='flex full-width justify-content-space-between'>
+							<PillBtn
+								className='flex02 align-self-flex-end margin-bottom'
+								text='Cancelar'
+								left
+								background='#000'
+								onClick={() => setEditHeroOpen(false)}
+							/>
+							<PillBtn
+								className='flex02 align-self-flex-end margin-bottom'
+								text={isUpdating ? 'Guardando...' : 'Confirmar'}
+								onClick={() => updateSup()}
+							/>
+						</div>
 					</div>
 				</CustomModal>
 			</div>

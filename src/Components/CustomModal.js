@@ -1,11 +1,11 @@
 import React, { 
-	// useState, 
-	// useEffect, 
+	useState, 
+	useEffect, 
 } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
-export default function CustomModal(props) { 
+export default function CustomModal(props) {
 	return (
 		<Modal
 			className={`modal ${props.smallModal ? 'small-size-modal': 'normal-size-modal'}`}
