@@ -4,6 +4,7 @@ import React, {
 	// useEffect, 
 } from 'react';
 import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 import PillBtn from '../Components/PillBtn';
 import ColorSquares from '../Components/ColorSquares';
@@ -13,7 +14,7 @@ export default function CreateHeroStep2(props) {
 	const history = useHistory();
 	const [selectedColor, setSelectedColor] = useState(0);
 	const suitRef = useRef()
-	
+	const isLoading = useSelector(state => state.Suits.isLoading)
 	const onSelectColor = (value) => setSelectedColor(value);
 
 	const onSuitColorChange = (prop) => {
@@ -53,7 +54,7 @@ export default function CreateHeroStep2(props) {
 			</div>
 			<PillBtn 
 				className='align-self-flex-end margin-bottom'
-				text={props.isEdit ? 'ACTUALIZAR TRAJE': 'CREAR TRAJE'}
+				text={isLoading ? 'GUARDANDO...' : props.isEdit ? 'ACTUALIZAR TRAJE': 'CREAR TRAJE'}
 				onClick={() => props.onSubmit(suitRef)}
 			/>
 		</div>

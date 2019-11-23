@@ -9,6 +9,7 @@ import TextInput from '../Components/TextInput';
 import SimpleCard from '../Components/SimpleCard';
 import PillBtn from '../Components/PillBtn';
 import HorizontalMenu from '../Components/HorizontalMenu';
+import LoadingState from '../Components/LoadingState';
 
 import { fetchSuperheroes } from '../actions/SuperheroesActions';
 import debounce from '../utils/Debounce';
@@ -46,36 +47,42 @@ export default function HeroesIndexRoute() {
 	}
 
 	return (
-		<div className="container flex column align-items-center justify-content-space-around">
-			<div className='flex column full-width align-items-center'>
-				<p className='huge-text'>SUPERHÉROES</p>
-				<TextInput 
-					className='width60'
-					rounded
-					placeholder='Buscar...'
-					value={filterText}
-					onChange={(e) => setFilterText(e.target.value)}
-				/>	
+		superheroes.length ? (
+			<div className="container flex column align-items-center justify-content-space-around">
+				<div className='flex column full-width align-items-center'>
+					<p className='huge-text'>SUPERHÉROES</p>
+					<TextInput 
+						className='width60'
+						rounded
+						placeholder='Buscar...'
+						value={filterText}
+						onChange={(e) => setFilterText(e.target.value)}
+					/>	
+				</div>
+				<div className='horizontal-menu-container'>
+					{superheroes.length ? 
+						(filterText && !filteredData.length ?
+							<p className='big-padding-vertical no-margin big-text text-center'>No se encontraron resultados :(</p>:
+							<HorizontalMenu
+								renderData={() => renderHeroCards(filterText ? filteredData: superheroes)}
+								update={[filteredData.length, superheroes.length]}
+							/>
+						):
+						<p className='big-padding-vertical no-margin big-text text-center'>No hay superheroes registrados, comienza creando uno</p>
+					}
+				</div>
+				<div className='flex column align-items-flex-end full-width'>
+					<PillBtn
+						className=''
+						text='REGISTRAR'
+						onClick={() => history.push('/create-hero')}
+					/>
+				</div>
 			</div>
-			<div className='horizontal-menu-container'>
-				{superheroes.length ? 
-					(filterText && !filteredData.length ?
-						<p className='big-padding-vertical no-margin big-text text-center'>No se encontraron resultados :(</p>:
-						<HorizontalMenu
-							renderData={() => renderHeroCards(filterText ? filteredData: superheroes)}
-							update={[filteredData.length, superheroes.length]}
-						/>
-					):
-					<p className='big-padding-vertical no-margin big-text text-center'>No hay superheroes registrados, comienza creando uno</p>
-				}
+		) : (
+			<div className='container'>
+				<LoadingState />
 			</div>
-			<div className='flex column align-items-flex-end full-width'>
-				<PillBtn
-					className=''
-					text='REGISTRAR'
-					onClick={() => history.push('/create-hero')}
-				/>
-			</div>
-		</div>
+		)
 	)	
 }
