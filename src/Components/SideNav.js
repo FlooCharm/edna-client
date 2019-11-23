@@ -25,6 +25,7 @@ export default function SideBar ({ location, history }) {
         (!match) &&
 		(location.pathname !== '/create-hero') &&
 		(location.pathname !== '/create-suit') &&
+        (location.pathname !== '/edit-suit') &&
         (
             <div className='sidenav-sticky'>
                 <SideNav

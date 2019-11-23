@@ -20,7 +20,7 @@ export default function TextInput(props) {
 TextInput.propTypes = {
 	className: PropTypes.string,
 	type: PropTypes.string,
-	value: PropTypes.string,
+	value: PropTypes.node,
 	placeholder: PropTypes.string,
 	onChange: PropTypes.func,
 	rounded: PropTypes.bool

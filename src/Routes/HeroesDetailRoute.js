@@ -161,7 +161,7 @@ export default function HeroesDetailRoute() {
 													}
 													background='#EF2626'
 													left
-													onClick={() => {}}
+													onClick={() => history.push('/edit-suit', { id: superhero._id, suitId: index })}
 												/>
 											</div>
 											<div className='delete-btn'>

@@ -18,7 +18,7 @@ export default function RadioTabs (props) {
 		});
 		props.onChange(props.selected);
 		setOpts(newOpts);
-	}, []);
+	}, [props.selected]);
 
 	return (
 		<SegmentedControl

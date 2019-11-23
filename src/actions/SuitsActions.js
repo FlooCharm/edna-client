@@ -51,6 +51,23 @@ export function createSuit (data) {
 	}
 }
 
+export function updateSuit (id, data) {
+	return async (dispatch, getState) => {
+		try {
+			let stateAllIds = getState().Suits.allIds;
+			let stateById = getState().Suits.byId;
+			let result = await ApiService.updateSuit(id, data);
+			let normalized = normalizeById([result.suit])
+			let byId = { ...stateById, ...normalized.byId }
+			let allIds = [ ...stateAllIds, ...normalized.allIds ]
+			dispatch(getSuitsSuccess({ byId, allIds }))
+			return result.suit;
+		} catch (e) {
+			dispatch(getSuitsFailure(e))
+		}
+	}
+}
+
 export const getSuitsBegin = () => ({
 	type: GET_SUITS_BEGIN
 })

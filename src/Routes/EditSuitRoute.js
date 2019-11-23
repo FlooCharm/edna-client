@@ -1,12 +1,13 @@
 import React, { 
 	useState,
-	useReducer
-	// useEffect, 
+	useReducer,
+	useEffect, 
 } from 'react';
 import { useHistory, useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useStore } from 'react-redux';
 
 import svgToDataURL from 'svg-to-dataurl';
+import camelcaseKeys from 'camelcase-keys';
 
 import useFormInput from '../custom-hooks/useFormInput';
 import useFormValue from '../custom-hooks/useFormValue';
@@ -14,13 +15,13 @@ import CreateSuitStep1 from '../Components/CreateSuitStep1';
 import CreateSuitStep2 from '../Components/CreateSuitStep2';
 import CreateSuitStep3 from '../Components/CreateSuitStep3';
 
-import { createSuit } from '../actions/SuitsActions';
+import { updateSuit } from '../actions/SuitsActions';
 import { fetchSuperhero } from '../actions/SuperheroesActions';
 
 import toUnderscore from '../utils/ToUnderscore.js';
 import stringToNumber from '../utils/StringToNumber.js';
 
-export default function CreateSuitRoute(props) { 
+export default function EditSuitRoute(props) { 
 	const initialState = {
 		measures: {
 			lengthLeftArm: '',
@@ -86,13 +87,28 @@ export default function CreateSuitRoute(props) {
 		}
 	};
 	const dispatch = useDispatch();
+	const store = useStore();
 	const history = useHistory();
 	const superhero = useLocation().state.id;
+	const suitIndex = useLocation().state.suitId;
 	const [step, setStep] = useState(1);
+	const [suitId, setSuitId] = useState(0);
 	const wearer = useFormValue(0);
 	const material = useFormValue(0);
 	const [colors, setColors] = useState(['#EF2626']);
 	const [suit, dispatchSuit] = useReducer(reducer, initialState);
+
+	useEffect(() => {
+		if (!superhero || !store.getState().Superheroes.byId[superhero])
+			return history.goBack();
+		const suitData = store.getState().Superheroes.byId[superhero].suits[suitIndex];
+		setSuitId(suitData._id);
+		wearer.onChange(suitData.bearer_type);
+		material.onChange(suitData.fabric);
+		setColors(suitData.main_colors);
+		dispatchSuit({ type: 'SET_ALL_MEASURES', payload: camelcaseKeys(suitData.measures) });
+		dispatchSuit({ type: 'SET_ALL_COLORS', payload: camelcaseKeys(suitData.pieces) });
+	}, [superhero, suitIndex]);
 	
 	function reducer(state, action) {
 		switch (action.type) {
@@ -124,6 +140,23 @@ export default function CreateSuitRoute(props) {
 							is_active: false,
 							color: '#00000022'
 						}
+					}
+				}
+			case 'SET_ALL_MEASURES':
+				return {
+					...state,
+					measures: {
+						...state.measures,
+						...action.payload
+					}
+				}
+			case 'SET_ALL_COLORS':
+				case 'SET_ALL_MEASURES':
+				return {
+					...state,
+					colors: {
+						...state.colors,
+						...action.payload
 					}
 				}
 			default:
@@ -160,11 +193,10 @@ export default function CreateSuitRoute(props) {
 		setColors(newColors);	
 	}
 
-	const changeStep = (value) => setStep(value);
-	
+	const changeStep = (value) => setStep(value);	
 
 	const onSubmit = async (suitRef) => {
-		let newSuit = {
+		let editedSuit = {
 			bearer: superhero,
 			bearer_type: wearer.value,
 			fabric: material.value,
@@ -174,7 +206,7 @@ export default function CreateSuitRoute(props) {
 			thumbnail: svgToDataURL(suitRef.current.innerHTML)
 
 		}
-		await dispatch(createSuit(newSuit));
+		await dispatch(updateSuit(suitId, editedSuit));
 		await dispatch(fetchSuperhero(superhero))
 		history.push(`/superhero/${superhero}`);
 	}
@@ -209,6 +241,7 @@ export default function CreateSuitRoute(props) {
 					colors={colors}
 					changeStep={changeStep}
 					onSubmit={onSubmit}
+					isEdit
 				/>	
 			);
 		default:

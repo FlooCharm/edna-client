@@ -6,7 +6,7 @@ import {
 	Redirect
 	//Link 
 } from "react-router-dom";
-import { useStore, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import LoginRoute from './Routes/LoginRoute';
 import SignUpRoute from './Routes/SignUpRoute';
@@ -15,6 +15,7 @@ import HeroesDetailRoute from './Routes/HeroesDetailRoute';
 import GalleryRoute from './Routes/GalleryRoute';
 import CreateHeroRoute from './Routes/CreateHeroRoute';
 import CreateSuitRoute from './Routes/CreateSuitRoute';
+import EditSuitRoute from './Routes/EditSuitRoute';
 import { ednaApiAxios } from './utils/Axios.js';
 
 import SideNav from './Components/SideNav';
@@ -56,6 +57,9 @@ export default function Routes () {
 					</PrivateRoute>
 					<PrivateRoute path="/create-suit">
 						<CreateSuitRoute />
+					</PrivateRoute>
+					<PrivateRoute path="/edit-suit">
+						<EditSuitRoute />
 					</PrivateRoute>
 					<PrivateRoute exact path="/superhero/:id">
 						<HeroesDetailRoute />

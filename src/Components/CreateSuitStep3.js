@@ -53,8 +53,7 @@ export default function CreateHeroStep2(props) {
 			</div>
 			<PillBtn 
 				className='align-self-flex-end margin-bottom'
-				text='CREAR TRAJE'
-				// disabled={!hasMinimumData}
+				text={props.isEdit ? 'ACTUALIZAR TRAJE': 'CREAR TRAJE'}
 				onClick={() => props.onSubmit(suitRef)}
 			/>
 		</div>
