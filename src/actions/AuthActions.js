@@ -10,9 +10,11 @@ export function login (credentials) {
 		await dispatch(loginBegin());
 		try {
 			let result = await ApiService.login(credentials);
-			dispatch(loginSuccess(result.accessToken))
+			dispatch(loginSuccess(result.accessToken));
+			return result;
 		} catch(e) {
-			dispatch(loginFailure(e))
+			dispatch(loginFailure(e));
+			throw e;
 		}
 
 	}

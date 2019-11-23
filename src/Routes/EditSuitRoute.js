@@ -207,7 +207,7 @@ export default function EditSuitRoute(props) {
 
 		}
 		await dispatch(updateSuit(suitId, editedSuit));
-		await dispatch(fetchSuperhero(superhero))
+		await dispatch(fetchSuperhero(superhero));
 		history.push(`/superhero/${superhero}`);
 	}
 	

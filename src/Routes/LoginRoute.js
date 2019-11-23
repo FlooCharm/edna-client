@@ -22,7 +22,7 @@ export default function LoginRoute() {
 	const history = useHistory();
 	const [credentials, dispatchCredentials] = useReducer(reducer, initialState);
 	const isLoading = useSelector(state => state.Auth.isLoading)
-	const error = useSelector(state => state.Auth.error)
+	const [error, setError] = useState('');
 
 	function reducer(state, action) {
 		switch (action.type) {
@@ -36,15 +36,14 @@ export default function LoginRoute() {
 		}
 	}
 
-	const sendCredentials = async (e) => {
-		e.preventDefault();
-		await dispatch(login(credentials))
-		if(!error){
+	const sendCredentials = async (event) => {
+		try {
+			setError('');
+			event.preventDefault();
+			await dispatch(login(credentials));
 			history.push('/');
-			alert('YAY! You logged in!');
-		} else {
-			console.log(error)
-			alert('Welp u failed');
+		} catch (e) {
+			setError(e);
 		}
 	}
 
@@ -61,7 +60,6 @@ export default function LoginRoute() {
 				/>
 			</div>
 			<form className='flex flex1 column'>
-				<h1>Login!</h1>
 				<div className='bubble-text'>
 					<BubbleText 
 						text='Introduce el usuario'
@@ -89,6 +87,10 @@ export default function LoginRoute() {
 						onChange={({ target }) => onChangeText(target, 'password')}
 						value={credentials.password}
 					/>
+
+				</div>
+				<div className={`big-text white-text text-center ${!error ? 'big-margin-bottom': 'margin-bottom'}`}>
+					{error && 'El usuario o contraseña es incorrecto'}
 				</div>
 				<div className='flex justify-content-flex-end'>
 					<PillBtn 
