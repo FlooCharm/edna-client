@@ -40,6 +40,7 @@ export default function HorizontalMenu(props) {
 			arrowLeft={Arrow(true)}
 			arrowRight={Arrow()}
 			alignCenter={false}
+			inertiaScrolling
 		/>
 	);
 }
