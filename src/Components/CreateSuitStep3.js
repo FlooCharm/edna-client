@@ -33,7 +33,7 @@ export default function CreateHeroStep2(props) {
 				</div>
 				<p className='huge-text white-text no-margin'>Traje (selección de colores)</p>
 			</div>
-			<div className='flex flex1 justify-content-center big-margin-top padding-horizontal'>
+			<div className='flex flex1 justify-content-center big-margin-top padding-horizontal color-suit-container'>
 				<div className='flex justify-content-center flex1 margin-horizontal grey-bg silhouette-container'>
 					<HeroSuit
 						ref={suitRef}
@@ -42,7 +42,7 @@ export default function CreateHeroStep2(props) {
 						onClick={onSuitColorChange}
 					/>
 				</div>
-				<div className='flex1 big-margin-left'>
+				<div className='flex1 big-margin-left colors-container'>
 					<p className='big-text white-text no-margin-top'>Selecciona Color</p>
 					<ColorSquares 
 						colors={props.colors}

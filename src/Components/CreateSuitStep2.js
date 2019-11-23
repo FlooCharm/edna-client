@@ -31,9 +31,9 @@ export default function CreateHeroStep2(props) {
 				</div>
 				<p className='huge-text white-text no-margin'>Traje (medidas)</p>
 			</div>
-			<div className='flex'>
+			<div className='flex measures-container'>
 				<div className='flex1 big-margin-left'>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Largo (brazo izquierdo)</p>
 						<TextInput 
 							className='black-bg'
@@ -43,7 +43,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'lengthLeftArm')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Ancho (brazo izquierdo)</p>
 						<TextInput 
 							className='black-bg'
@@ -53,7 +53,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'widthLeftArm')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Largo (brazo derecho)</p>
 						<TextInput 
 							className='black-bg'
@@ -63,7 +63,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'lengthRightArm')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Ancho (brazo derecho)</p>
 						<TextInput 
 							className='black-bg'
@@ -73,7 +73,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'widthRightArm')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Circunferencia (cuello)</p>
 						<TextInput 
 							className='black-bg'
@@ -83,7 +83,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'neck')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Circunferencia (cabeza)</p>
 						<TextInput 
 							className='black-bg'
@@ -93,7 +93,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'head')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Largo (torso)</p>
 						<TextInput 
 							className='black-bg'
@@ -105,7 +105,7 @@ export default function CreateHeroStep2(props) {
 					</div>
 				</div>
 				<div className='flex1 big-margin-left'>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Largo (pierna izquierda)</p>
 						<TextInput 
 							className='black-bg'
@@ -115,7 +115,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'lengthLeftLeg')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Ancho (pierna izquierda)</p>
 						<TextInput 
 							className='black-bg'
@@ -125,7 +125,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'widthLeftLeg')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Largo (pierna derecha)</p>
 						<TextInput 
 							className='black-bg'
@@ -135,7 +135,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'lengthRightLeg')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Ancho (pierna derecha)</p>
 						<TextInput 
 							className='black-bg'
@@ -145,7 +145,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'widthRightLeg')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Total (pecho)</p>
 						<TextInput 
 							className='black-bg'
@@ -155,7 +155,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'chest')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Total (cintura)</p>
 						<TextInput 
 							className='black-bg'
@@ -165,7 +165,7 @@ export default function CreateHeroStep2(props) {
 							onChange={({ target }) => props.onChangeText(target, 'waist')}
 						/>
 					</div>
-					<div className='flex justify-content-space-between small-margin-bottom big-margin-right'>
+					<div className='flex justify-content-space-between small-margin-bottom big-margin-right measure-content'>
 						<p className='big-text white-text no-margin'>Total (cadera)</p>
 						<TextInput 
 							className='black-bg'

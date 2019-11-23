@@ -527,5 +527,16 @@ body { font-family: 'Abel', sans-serif; }
 	}
 	.bubble-text { width: 70%; }
 	.big-padding-horizontal { padding: 0 2em; }
-	.width60, .width60-padded{ width: auto; }
+	.width60-padded{ width: 95%; }
+	.create-suit-container, .measures-container, .measure-content, .color-suit-container { flex-direction: column; }
+	.color-picker-container {
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		margin: 0 0 1em 0;
+	}
+	.sketch-picker { width: 70% !important; }
+	.colors-container {
+		margin: 1em 0 !important;
+	}  
 }
