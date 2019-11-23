@@ -16,6 +16,7 @@ import ChipsInput from '../Components/ChipsInput';
 import RadioTabs from '../Components/RadioTabs';
 import HeroSuit from '../Components/HeroSuit';
 import SimpleCard from '../Components/SimpleCard';
+import LoadingState from '../Components/LoadingState';
 import ItemsCarousel from 'react-items-carousel';
 
 import { fetchSuperhero, updateSuperhero, deleteSuperhero } from '../actions/SuperheroesActions';
@@ -332,7 +333,7 @@ export default function HeroesDetailRoute() {
 				</CustomModal>
 			</div>
 		) : (
-			<div className='full-width loading-state'>loading...</div>
+			<LoadingState />
 		)
 	)	
 }

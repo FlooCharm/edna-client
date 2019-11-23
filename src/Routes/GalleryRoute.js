@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchSuits } from '../actions/SuitsActions';
 
+import LoadingState from '../Components/LoadingState';
+
 export default function GalleryRoute() { 
 	const dispatch = useDispatch();
 	const suits = useSelector(state => state.Suits.allIds.map(id => state.Suits.byId[id]));
@@ -15,7 +17,7 @@ export default function GalleryRoute() {
 	}, [])
 
 	return (
-		suits ? (
+		suits.length ? (
 			<div className="container flex column align-items-center">
 				<div className='flex column full-width align-items-center'>
 					<p className='huge-text'>GALERÍA</p>
@@ -31,7 +33,9 @@ export default function GalleryRoute() {
 				</div>
 			</div>
 		) : (
-			<div>Loading...</div>
+			<div className='container'>
+				<LoadingState />
+			</div>
 		)
 	)	
 }
