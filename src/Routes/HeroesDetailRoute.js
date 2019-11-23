@@ -144,11 +144,11 @@ export default function HeroesDetailRoute() {
 								superhero.suits.map((item, index) =>
 									<SimpleCard
 										key={index}
-										className='small-margin-vertical huge-margin-left small-padding-vertical silhouette-container full-width flex justify-content-center width25'
+										className='relative small-margin-vertical huge-margin-left small-padding-vertical silhouette-container flex justify-content-center width20'
 									>
-										<div className='full-height'>
+										<div className='full-height centered'>
 											<img
-												height='100%'
+												height={item.bearer_type === 4 ? '70%': `100%`}
 												src={item.thumbnail}
 											/>
 											<div className='edit-btn'>
@@ -157,7 +157,7 @@ export default function HeroesDetailRoute() {
 													text={
 														<Edit2 color='white' size='21' />
 													}
-													background='#989898'
+													background='#EF2626'
 													left
 													onClick={() => {}}
 												/>
