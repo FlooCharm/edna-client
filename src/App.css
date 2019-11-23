@@ -14,6 +14,7 @@ body { font-family: 'Abel', sans-serif; }
 
 .border-box { box-sizing: border-box; }
 .clickable { cursor: pointer; }
+.width-auth { width: auto; }
 
 /* flexbox */
 .flex { display: flex; }
@@ -40,6 +41,7 @@ body { font-family: 'Abel', sans-serif; }
 }
 
 .width60 { width: 60%; }
+.width25 { width: 20vw !important; }
 .width60-padded { width: calc(60% + 48px); }
 .full-width { width: 100%; }
 .full-height { height: 100%; }
@@ -55,10 +57,13 @@ body { font-family: 'Abel', sans-serif; }
 
 .small-margin-vertical { margin: 1em 0; }
 .margin-horizontal { margin: 0 2em; }
+.big-margin-horizontal { margin: 0 4em; }
+.huge-margin-horizontal { margin: 0 8em; }
 
 .small-margin-left { margin-left: 0.5em; }
 .small-margin-right { margin-right: 0.5em; }
 .small-margin-bottom { margin-bottom: 0.5em; }
+.margin-top { margin-top: 1em; }
 .margin-right { margin-right: 1em; }
 .margin-left { margin-left: 1em; }
 .margin-bottom { margin-bottom: 1em; }
@@ -66,6 +71,7 @@ body { font-family: 'Abel', sans-serif; }
 .big-margin-top { margin-top: 2em; }
 .big-margin-right { margin-right: 2em; }
 .big-margin-left { margin-left: 2em; }
+.huge-margin-left { margin-left: 2.5em; }
 .huge-margin-right { margin-right: 4em; }
 .huge-margin-bottom { margin-bottom: 4em; }
 
@@ -82,11 +88,13 @@ body { font-family: 'Abel', sans-serif; }
 .big-padding-left { padding-left: 2em; }
 .big-padding-bottom { padding-bottom: 2em; }
 .big-padding-right { padding-right: 2em; }
+.big-padding-top { padding-top: 2em; }
 .huge-padding-top { padding-top: 4em; }
 .huge-padding-bottom { padding-bottom: 4em; }
 
 .padding-horizontal { padding: 0 2em; }
 .big-padding-horizontal { padding: 0 4em; }
+.small-padding-vertical { padding: 0.8em 0; }
 .padding-vertical { padding: 2em 0; }
 .big-padding-vertical { padding: 4em 0; }
 .padded { padding: 2em; }
@@ -185,9 +193,17 @@ body { font-family: 'Abel', sans-serif; }
 	padding: 12px;
 	padding-right: 30px;
 }
+.pill-btn.small { 
+	padding: 4px 6px;
+	padding-left: 10px;
+}
+.pill-btn.small.left {
+	padding: 4px 6px;
+	padding-right: 10px;	
+}
 .pill-btn:hover { opacity: 0.7; }
 .pill-btn:disabled { 
-	opacity: 0.7;
+	opacity: 0.3;
 	cursor: default;
 }
 
@@ -207,7 +223,11 @@ body { font-family: 'Abel', sans-serif; }
 	opacity: 0.3;
 	cursor: default;
 }
-
+.delete-btn {
+	position: absolute;
+	top: 24px;
+	right: 36px;
+}
 /* Chips */
 .chips-container {
     display: flex;
@@ -330,7 +350,7 @@ body { font-family: 'Abel', sans-serif; }
 
 /* Silhouettes */
 .silhouette-container {
-	max-height: 72vh;
+	height: 70vh;
 }
 
 /* horizontalMenu */
@@ -341,6 +361,19 @@ body { font-family: 'Abel', sans-serif; }
 .menu-item-wrapper {
 	outline: none;
 	padding: 1em 3em;
+}
+
+.sc-bdVaJa { width: 25vw; }
+
+/* tags */
+.tag {
+	padding: 4px 16px;
+	min-width: 75px;
+	max-width: 75px;
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	background: #EF2626;
 }
 
 /* Gallery */
@@ -355,7 +388,6 @@ body { font-family: 'Abel', sans-serif; }
 	margin: 1em;
 	padding: 1em;
 	border-radius: 5px;
-	width: calc(25% - 4rem);
 	justify-content: center;
 	align-items: center;
 }

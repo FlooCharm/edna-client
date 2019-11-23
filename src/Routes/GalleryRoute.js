@@ -11,7 +11,7 @@ export default function GalleryRoute() {
 	const suits = useSelector(state => state.Suits.allIds.map(id => state.Suits.byId[id]));
 
 	useEffect(() => {
-		dispatch(fetchSuits())
+		dispatch(fetchSuits());
 	}, [])
 
 	return (

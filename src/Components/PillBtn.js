@@ -21,7 +21,7 @@ export default function PillBtn(props) {
 
 PillBtn.propTypes = {
 	className: PropTypes.string,
-	text: PropTypes.string,
+	text: PropTypes.node,
 	type: PropTypes.string,
 	background: PropTypes.string,
 	onClick: PropTypes.func,
