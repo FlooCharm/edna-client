@@ -228,6 +228,11 @@ body { font-family: 'Abel', sans-serif; }
 	top: 24px;
 	right: 36px;
 }
+.edit-btn {
+	position: absolute;
+	top: 24px;
+	left: 36px;
+}
 /* Chips */
 .chips-container {
     display: flex;

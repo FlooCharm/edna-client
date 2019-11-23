@@ -20,13 +20,13 @@ import ItemsCarousel from 'react-items-carousel';
 
 import { fetchSuperhero, updateSuperhero, deleteSuperhero } from '../actions/SuperheroesActions';
 import { setChips } from '../actions/ChipsActions';
-import { ChevronLeft, ChevronRight, X } from 'react-feather';
+import { ChevronLeft, ChevronRight, X, Edit2 } from 'react-feather';
 
 export default function HeroesDetailRoute() { 
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { id } = useParams();
-	const [isEditOpen, setEditOpen] = useState(false);
+	const [isEditHeroOpen, setEditHeroOpen] = useState(false);
 	const [isDeleteHeroOpen, setDeleteHero] = useState(false);
 	const [isDeleteSuitOpen, setDeleteSuit] = useState(false);
 	const [activeSuit, setActiveSuit] = useState(0);
@@ -69,13 +69,13 @@ export default function HeroesDetailRoute() {
 	useEffect(() => {
 		if(!superhero) {
 			dispatch(fetchSuperhero(id))
-		} else if (superhero && !isEditOpen){
+		} else if (superhero && !isEditHeroOpen){
 			name.onChange({target:{value:superhero.super_name}})
 			powers.onChange(superhero.superpowers)
 			weather.onChange(superhero.weather)
 			element.onChange(superhero.element)
 		}
-	}, [superhero, isEditOpen])
+	}, [superhero, isEditHeroOpen])
 
 	const updateSup = async () => {
 		let newData = {
@@ -86,7 +86,7 @@ export default function HeroesDetailRoute() {
 		}
 		let result = await dispatch(updateSuperhero(superhero._id, newData))
 		if(result) saveChips()
-		setEditOpen(false)
+		setEditHeroOpen(false)
 	}
 
 	const saveChips = async () => {
@@ -120,7 +120,7 @@ export default function HeroesDetailRoute() {
 						<IconBtn 
 							className='small-margin-right'
 							icon='Edit2'
-							onClick={() => setEditOpen(true)}
+							onClick={() => setEditHeroOpen(true)}
 						/>
 						<IconBtn 
 							background='#000'
@@ -151,6 +151,17 @@ export default function HeroesDetailRoute() {
 												height='100%'
 												src={item.thumbnail}
 											/>
+											<div className='edit-btn'>
+												<PillBtn
+													className='small centered'
+													text={
+														<Edit2 color='white' size='21' />
+													}
+													background='#989898'
+													left
+													onClick={() => {}}
+												/>
+											</div>
 											<div className='delete-btn'>
 												<PillBtn
 													className='small centered'
@@ -253,8 +264,8 @@ export default function HeroesDetailRoute() {
 					</div>
 				</CustomModal>
 				<CustomModal
-					isOpen={isEditOpen}
-					onRequestClose={() => setEditOpen(false)}
+					isOpen={isEditHeroOpen}
+					onRequestClose={() => setEditHeroOpen(false)}
 					contentLabel="Example Modal"
 				>
 					<div className='flex column full-height align-items-center justify-content-space-around'>
