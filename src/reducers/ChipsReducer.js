@@ -22,7 +22,7 @@ export default function ChipsReducer(state = initialState, action) {
 		case SET_WEATHERS:
 			return {
 				...state,
-				powers: action.payload.weathers
+				weathers: action.payload.weathers
 			}
 		default:
 			return state;

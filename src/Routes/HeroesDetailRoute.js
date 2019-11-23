@@ -139,6 +139,8 @@ export default function HeroesDetailRoute() {
 							slidesToScroll={1}
 							rightChevron={Arrow()}
 							leftChevron={Arrow(true)}
+							outsideChevron
+							chevronWidth={40}
 						>
 							{
 								superhero.suits.map((item, index) =>
