@@ -40,7 +40,7 @@ export default function CreateHeroStep1(props) {
 	const onSelectColor = (value) => setSelectedColor(value);
 
 	return (
-		<div className="full-container black-bg">
+		<div className="full-container black-bg create-suit-container">
 			<div className='flex1 column justify-content-space-between'>
 				<div className='flex row align-items-center big-padding-vertical'>
 					<div className='margin-right'>
@@ -86,7 +86,7 @@ export default function CreateHeroStep1(props) {
 				</div>
 			</div>
 			<div className='flex column justify-content-space-around'>
-				<div className='big-margin-right'>
+				<div className='big-margin-right color-picker-container'>
 					<SketchPicker
 						color={props.colors[selectedColor]}
 						disableAlpha
