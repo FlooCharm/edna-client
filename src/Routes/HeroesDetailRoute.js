@@ -140,57 +140,63 @@ export default function HeroesDetailRoute() {
 				</div>
 				<div className='flex'>
 					<div className='flex flex05 silhouette-container justify-content-center big-margin-horizontal'>
-						<ItemsCarousel
-							infiniteLoop={false}
-							activeItemIndex={activeSuit}
-							requestToChangeActive={(value) => setActiveSuit(value)}
-							numberOfCards={1}
-							slidesToScroll={1}
-							rightChevron={Arrow()}
-							leftChevron={Arrow(true)}
-							outsideChevron
-							chevronWidth={40}
-						>
-							{
-								superhero.suits.map((item, index) =>
-									<SimpleCard
-										key={index}
-										className='relative small-margin-vertical huge-margin-left small-padding-vertical silhouette-container flex justify-content-center width20'
-									>
-										<div className='full-height centered'>
-											<img
-												height={item.bearer_type === 4 ? '70%': `100%`}
-												src={item.thumbnail}
-											/>
-											<div className='edit-btn'>
-												<PillBtn
-													className='small centered'
-													text={
-														<Edit2 color='white' size='21' />
-													}
-													background='#EF2626'
-													left
-													onClick={() => history.push('/edit-suit', { id: superhero._id, suitId: index })}
+						{superhero.suits.length ? (
+							<ItemsCarousel
+								infiniteLoop={false}
+								activeItemIndex={activeSuit}
+								requestToChangeActive={(value) => setActiveSuit(value)}
+								numberOfCards={1}
+								slidesToScroll={1}
+								rightChevron={Arrow()}
+								leftChevron={Arrow(true)}
+								outsideChevron
+								chevronWidth={40}
+							>
+								{
+									superhero.suits.map((item, index) =>
+										<SimpleCard
+											key={index}
+											className='relative small-margin-vertical huge-margin-left small-padding-vertical silhouette-container flex justify-content-center width20'
+										>
+											<div className='full-height centered'>
+												<img
+													height={item.bearer_type === 4 ? '70%': `100%`}
+													src={item.thumbnail}
 												/>
+												<div className='edit-btn'>
+													<PillBtn
+														className='small centered'
+														text={
+															<Edit2 color='white' size='21' />
+														}
+														background='#EF2626'
+														left
+														onClick={() => history.push('/edit-suit', { id: superhero._id, suitId: index })}
+													/>
+												</div>
+												<div className='delete-btn'>
+													<PillBtn
+														className='small centered'
+														text={
+															<X color='white' size='21' />
+														}
+														background='#989898'
+														onClick={() => {
+															setSuitId(item._id)
+															setDeleteSuit(true)
+														}}
+													/>
+												</div>
 											</div>
-											<div className='delete-btn'>
-												<PillBtn
-													className='small centered'
-													text={
-														<X color='white' size='21' />
-													}
-													background='#989898'
-													onClick={() => {
-														setSuitId(item._id)
-														setDeleteSuit(true)
-													}}
-												/>
-											</div>
-										</div>
-									</SimpleCard>
-								)
-							}
-						</ItemsCarousel>
+										</SimpleCard>
+									)
+								}
+							</ItemsCarousel>
+						) : (
+							<div className='grey-bg flex flex1 align-items-center justify-content-center'>
+								Este superhéroe no tiene trajes
+							</div>
+						)}
 					</div>
 					<div className='flex1 column'>
 						<p className='big-text no-margin-top small-margin-bottom'>Poderes</p>
