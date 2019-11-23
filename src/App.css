@@ -12,6 +12,12 @@ body { font-family: 'Abel', sans-serif; }
 	min-height: 100vh;
 }
 
+@media screen and (max-width: 1000px) { 
+	.container {
+		padding-left: calc(64px + 0.5em);
+	}
+}
+
 .relative { position: relative; }
 .border-box { box-sizing: border-box; }
 .clickable { cursor: pointer; }
@@ -125,11 +131,12 @@ body { font-family: 'Abel', sans-serif; }
 	position: -webkit-sticky;
 	position: sticky;
 	top: 0;
+	z-index: 10000;
 }
 .sidenav---sidenav---_2tBP {
 	height: 100vh;
 	background-color: #000 !important;
-	padding-top: 50px;
+	/*padding-top: 50px;*/
 }
 .sidenav---highlighted---oUx9u {
 	background-color: #EF2626 !important;

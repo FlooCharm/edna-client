@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { matchPath } from "react-router";
 
@@ -6,9 +6,12 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 import { List, Grid, LogOut } from 'react-feather';
 
 import { clearSession } from '../actions/AuthActions';
+import useWindowSize from '../custom-hooks/useWindowSize';
 
 export default function SideBar ({ location, history }) {
 	const dispatch = useDispatch();
+    const windowSize = useWindowSize();
+    const [isExpanded, setExpanded] = useState(true);
 
     const logout = () => {
         dispatch(clearSession());
@@ -19,6 +22,10 @@ export default function SideBar ({ location, history }) {
         exact: true,
         strict: false
     });
+
+    useEffect(() => {
+        windowSize.width < 1000 ? setExpanded(false): setExpanded(true);
+    }, [windowSize]);
 
     return (
 		(location.pathname !== '/login') &&
@@ -40,16 +47,22 @@ export default function SideBar ({ location, history }) {
     	                    }
                     	}
                     }}
-                	defaultExpanded
+                    onToggle={(val) => setExpanded(val)}
+                    expanded={isExpanded}
                 >
-                    {/* <SideNav.Toggle /> */}
-    				<div className='centered big-margin-bottom'>
-    					<img 
-    						width='104'
-    						src="assets/edna.svg" 
-    					/>	
-    				</div>
-                    <SideNav.Nav defaultSelected={location.pathname}>
+                    {windowSize.width < 1000 ? 
+                        <SideNav.Toggle />:
+        				<div className='centered big-margin-bottom'>
+        					<img 
+        						width='104'
+        						src="assets/edna.svg" 
+        					/>	
+        				</div>
+                    }
+                    <SideNav.Nav 
+                        defaultSelected={location.pathname}
+                        expanded={isExpanded}
+                    >
                         <NavItem  eventKey="/">
                             <NavIcon>
                                <List color='#ffffff'/>
