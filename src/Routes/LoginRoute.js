@@ -52,20 +52,20 @@ export default function LoginRoute() {
 	}
 
 	return (
-		<div className="full-container black-bg centered">
-			<div className='flex flex05 justify-content-center big-padding-left'>
+		<div className="full-container black-bg centered login-container">
+			<div className='flex flex05 justify-content-center big-padding-left login-edna'>
 				<img 
 					width='80%'
 					src="assets/edna.svg" 
 				/>
 			</div>
 			<form className='flex flex1 column'>
-				<div className='bubble-text'>
+				<div>
 					<BubbleText 
 						text='Introduce el usuario'
 					/>
 				</div>
-				<div className='flex justify-content-center'>
+				<div className='flex justify-content-center login-inputs'>
 					<TextInput
 						className='margin-bottom reversed-margin-top black-bg width60'
 						placeholder='Usuario'
@@ -73,13 +73,13 @@ export default function LoginRoute() {
 						value={credentials.username}
 					/>
 				</div>
-				<div className='bubble-text'>
+				<div>
 					<BubbleText 
 						text='Introduce la contraseña'
 						isPass
 					/>
 				</div>
-				<div className='flex justify-content-center'>
+				<div className='flex justify-content-center login-inputs'>
 					<TextInput
 						className='big-margin-bottom reversed-margin-top black-bg width60'
 						type='password'
