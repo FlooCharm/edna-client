@@ -17,6 +17,8 @@ body { font-family: 'Abel', sans-serif; }
 .clickable { cursor: pointer; }
 .width-auto { width: auto; }
 
+.above { z-index: 10; }
+
 /* flexbox */
 .flex { display: flex; }
 .flex1 { flex: 1; }
@@ -397,6 +399,45 @@ body { font-family: 'Abel', sans-serif; }
 	align-items: center;
 }
 
+/* Dropdown */
+.dropdown {
+	border: none;
+	border-radius: 10px;
+	background: #EF2626;
+	color: white;
+	font-size: 20px;
+	display: flex;
+	justify-content: space-between;
+	padding-right: 8px;
+	padding-left: 16px !important;
+	align-items: center;
+
+}
+.Dropdown-arrow-wrapper { 
+	display: inline-block; 
+	height: 20px;
+	margin-left: 8px;
+}
+.dropdown-menu {
+	border: none;
+	border-radius: 5px;
+	min-width: 125px;
+}
+.Dropdown-option {
+	padding: 1em;
+	font-size: 18px;
+}
+.Dropdown-option.is-selected { 
+	background: #EF2626;
+	color: white;
+}
+.Dropdown-option.is-selected:hover { 
+	background: #EF2626;
+	color: white;
+}
+.Dropdown-option:hover { background: #EF262622; }
+
+/* RESPONSIVE! */
 @media screen and (min-width: 1000px) {
 	.gallery-card {
 		width: calc(25% - 4rem);
