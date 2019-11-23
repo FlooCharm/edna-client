@@ -11,19 +11,26 @@ import PillBtn from '../Components/PillBtn';
 import HorizontalMenu from '../Components/HorizontalMenu';
 
 import { fetchSuperheroes } from '../actions/SuperheroesActions';
+import debounce from '../utils/Debounce';
 
 export default function HeroesIndexRoute() { 
 	const [filterText, setFilterText] = useState('');
+	const [filteredData, setFilteredData] = useState([]);
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const superheroes = useSelector(state => state.Superheroes.allIds.map(id => state.Superheroes.byId[id]));
 
 	useEffect(() => {
-		dispatch(fetchSuperheroes())
+		dispatch(fetchSuperheroes());
 	}, []);
 
-	const renderHeroCards = () => {
-		return superheroes.map(superhero => 
+	useEffect(() => {
+		const filtered = superheroes.filter(hero => hero.super_name.toLowerCase().indexOf(filterText) !== -1)
+		setFilteredData(filtered);
+	}, [filterText]);
+
+	const renderHeroCards = (heroesToRender) => {
+		return heroesToRender.map(superhero => 
 			<SimpleCard
 				className='clickable'
 				key={superhero.super_name}
@@ -51,10 +58,16 @@ export default function HeroesIndexRoute() {
 				/>	
 			</div>
 			<div className='horizontal-menu-container'>
-				<HorizontalMenu
-					renderData={() => renderHeroCards()}
-					update={superheroes}
-				/>
+				{superheroes.length ? 
+					(filterText && !filteredData.length ?
+						<p className='big-padding-vertical no-margin big-text text-center'>No se encontraron resultados :(</p>:
+						<HorizontalMenu
+							renderData={() => renderHeroCards(filterText ? filteredData: superheroes)}
+							update={[filteredData.length, superheroes.length]}
+						/>
+					):
+					<p className='big-padding-vertical no-margin big-text text-center'>No hay superheroes registrados, comienza creando uno</p>
+				}
 			</div>
 			<div className='flex column align-items-flex-end full-width'>
 				<PillBtn
