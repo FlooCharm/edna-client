@@ -1,7 +1,7 @@
 import {
-	GET_SUITS_BEGIN,
+	SUITS_BEGIN,
 	GET_SUITS_SUCCESS,
-	GET_SUITS_FAILURE
+	SUITS_FAILURE
 } from '../actions/SuitsActions.js';
 
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 
 export default function SuitsReducer(state = initialState, action) {
 	switch (action.type) {
-		case GET_SUITS_BEGIN: 
+		case SUITS_BEGIN: 
 			return {
 				...state,
 				isLoading: true,
@@ -27,7 +27,7 @@ export default function SuitsReducer(state = initialState, action) {
 				isLoading: false,
 				error: ''
 			}
-		case GET_SUITS_FAILURE:
+		case SUITS_FAILURE:
 			return {
 				...state,
 				isLoading: false,

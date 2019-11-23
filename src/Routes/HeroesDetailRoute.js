@@ -19,6 +19,7 @@ import SimpleCard from '../Components/SimpleCard';
 import ItemsCarousel from 'react-items-carousel';
 
 import { fetchSuperhero, updateSuperhero, deleteSuperhero } from '../actions/SuperheroesActions';
+import { deleteSuit } from '../actions/SuitsActions';
 import { setChips } from '../actions/ChipsActions';
 import { ChevronLeft, ChevronRight, X, Edit2 } from 'react-feather';
 
@@ -29,6 +30,7 @@ export default function HeroesDetailRoute() {
 	const [isEditHeroOpen, setEditHeroOpen] = useState(false);
 	const [isDeleteHeroOpen, setDeleteHero] = useState(false);
 	const [isDeleteSuitOpen, setDeleteSuit] = useState(false);
+	const [suitId, setSuitId] = useState();
 	const [activeSuit, setActiveSuit] = useState(0);
 	const name = useFormInput('');
 	const powers = useFormValue([]);
@@ -102,6 +104,12 @@ export default function HeroesDetailRoute() {
 		history.push('/')
 	}
 
+	const deleteSuperheroSuit = async () => {
+		await dispatch(deleteSuit(suitId))
+		await dispatch(fetchSuperhero(superhero._id))
+		setDeleteSuit(false)
+	}
+
 	return (
 		superhero ? (
 			<div className="full-container flex column justify-content-space-between">
@@ -171,7 +179,10 @@ export default function HeroesDetailRoute() {
 														<X color='white' size='21' />
 													}
 													background='#989898'
-													onClick={() => setDeleteSuit(true)}
+													onClick={() => {
+														setSuitId(item._id)
+														setDeleteSuit(true)
+													}}
 												/>
 											</div>
 										</div>
@@ -260,7 +271,7 @@ export default function HeroesDetailRoute() {
 								className='flex02 align-self-flex-end'
 								text={isLoading ? 'Borrando...' : 'Confirmar'}
 								background='#000'
-								onClick={() => {}}
+								onClick={() => deleteSuperheroSuit()}
 							/>
 						</div>
 					</div>
