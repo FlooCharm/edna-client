@@ -2,6 +2,7 @@ import React, {
 	useState, 
 	// useEffect, 
 } from 'react';
+import { useSelector } from 'react-redux';
 
 import TextInput from '../Components/TextInput';
 import PillBtn from '../Components/PillBtn';
@@ -15,6 +16,8 @@ export default function CreateHeroStep2(props) {
 		{ label: 'Tierra', value: 'tierra' },
 		{ label: 'Aire', value: 'aire' },
 	]
+
+	const isLoading = useSelector(state => state.Superheroes.isLoading)
 
 	return (
 		<div className="full-container black-bg column justify-content-space-between">
@@ -49,7 +52,7 @@ export default function CreateHeroStep2(props) {
 			<div className='flex justify-content-flex-end big-padding-vertical'>
 				<PillBtn 
 					disabled={!props.weather.value.length || !props.element.value}
-					text='REGISTRAR'
+					text={isLoading ? 'REGISTRANDO...' : 'REGISTRAR'}
 					onClick={props.onSubmit}
 				/>
 			</div>
