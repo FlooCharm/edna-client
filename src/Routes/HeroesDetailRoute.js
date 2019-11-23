@@ -114,8 +114,8 @@ export default function HeroesDetailRoute() {
 	return (
 		superhero ? (
 			<div className="full-container flex column justify-content-space-between">
-				<div className='flex row align-items-center big-padding-top justify-content-space-between'>
-					<div className='flex row align-items-center'>
+				<div className='flex row column-on-mobile align-items-center big-padding-top justify-content-space-between'>
+					<div className='flex row align-items-center align-self-flex-start-on-mobile'>
 						<div className='margin-right'>
 							<PillBtn 
 								text='REGRESAR'
@@ -125,7 +125,7 @@ export default function HeroesDetailRoute() {
 						</div>
 						<p className='huge-text no-margin'>{superhero.super_name}</p>
 					</div>
-					<div className='flex row align-items-center huge-margin-right'>
+					<div className='flex row align-items-center huge-margin-right margin-right-on-mobile align-self-flex-end-on-mobile'>
 						<IconBtn 
 							className='small-margin-right'
 							icon='Edit2'
@@ -138,7 +138,7 @@ export default function HeroesDetailRoute() {
 						/>
 					</div>
 				</div>
-				<div className='flex'>
+				<div className='flex column-on-mobile'>
 					<div className='flex flex05 silhouette-container justify-content-center big-margin-horizontal'>
 						{superhero.suits.length ? (
 							<ItemsCarousel
@@ -198,7 +198,7 @@ export default function HeroesDetailRoute() {
 							</div>
 						)}
 					</div>
-					<div className='flex1 column'>
+					<div className='flex1 column padding-horizontal-on-mobile huge-margin-top-on-mobile'>
 						<p className='big-text no-margin-top small-margin-bottom'>Poderes</p>
 						<div className='flex'>
 							{
