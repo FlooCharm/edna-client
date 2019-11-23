@@ -36,6 +36,7 @@ export function fetchSuitsbySuperhero (id) {
 
 export function createSuit (data) {
 	return async (dispatch, getState) => {
+		await dispatch(suitsBegin())
 		try {
 			let stateAllIds = getState().Suits.allIds;
 			let stateById = getState().Suits.byId;
@@ -53,6 +54,7 @@ export function createSuit (data) {
 
 export function updateSuit (id, data) {
 	return async (dispatch, getState) => {
+		await dispatch(suitsBegin())
 		try {
 			let stateAllIds = getState().Suits.allIds;
 			let stateById = getState().Suits.byId;
