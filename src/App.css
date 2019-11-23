@@ -362,7 +362,9 @@ body { font-family: 'Abel', sans-serif; }
 	outline: none;
 	padding: 1em 3em;
 }
+
 .sc-bdVaJa { width: 25vw; }
+
 /* tags */
 .tag {
 	padding: 4px 16px;
@@ -372,4 +374,32 @@ body { font-family: 'Abel', sans-serif; }
 	text-align: center;
 	color: white;
 	background: #EF2626;
+}
+
+/* Gallery */
+.gallery-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.gallery-card {
+	display: flex;
+	margin: 1em;
+	padding: 1em;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (min-width: 1000px) {
+	.gallery-card {
+		width: calc(25% - 4rem);
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.gallery-card {
+		width: calc(50% - 4rem);
+	}
 }
